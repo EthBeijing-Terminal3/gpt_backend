@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "input": "What's my current balance?",
+      "label": "Check Balance"
+    },
+    {
+      "input": "How much do I have in my account?",
+      "label": "Check Balance"
+    },
+    {
+      "input": "Send $50 to John",
+      "label": "Transfer"
+    },
+    {
+      "input": "What NFTs do I own?",
+      "label": "List NFT"
+    },
+    // More examples...
+  ]
+}

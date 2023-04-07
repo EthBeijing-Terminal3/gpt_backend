@@ -10,5 +10,4 @@ api_key = ""
 
 app = Flask(__name__)
 
-terminal3 = Terminal3(OPENAI_API_KEY=api_key,
-                      model_selection='test', verbose=True)
+terminal3 = Terminal3(OPENAI_API_KEY=api_key,verbose=True)

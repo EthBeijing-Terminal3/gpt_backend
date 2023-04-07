@@ -6,41 +6,40 @@ from datetime import datetime
 
 class Terminal3(object):
     def __init__(self, OPENAI_API_KEY='',
-                 wallet_address='0x2Cb9F791d68ea5bDc8Aab1aAEA61ED84D876e67F',
-                 model_selection='default',
+                 wallet_address='',
                  verbose=False):
         if OPENAI_API_KEY == '':
             openai.api_key = os.getenv("OPENAI_API_KEY")
         else:
             openai.api_key = OPENAI_API_KEY
 
-        self.default_prompt_root = "fine-tune/default.json"
-        self.test_prompt_path = "fine-tune/test.json"
-        # self.wallet_address = wallet_address
-        self.model_selection = model_selection
-
-        if self.model_selection == 'default':
-            his_path = self.default_prompt_root
-        elif self.model_selection == 'test':
-            his_path = self.test_prompt_path
-        else:
-            his_path = ''
-        self.his_path = his_path
+        self.wallet_address = wallet_address
+        self.default_path = "fine-tune/default.json"
 
         self.verbose = verbose
-        self.history = self.load_history()
+        self.history = self.load_history(mode='test')
         # self.init_chatgpt(wallet_address)
 
-    def load_history(self):
-        if os.path.exists(self.his_path):
-            with open(self.his_path, "r") as f:
-                history = json.load(f)
-                return history
+    def load_json(self, path):
+        with open(path, "r") as f:
+            history = json.load(f)
+        self.history = history
+
+    def load_history(self, mode='user'):
+        path = "fine-tune/user/%s.json" % self.wallet_address
+        if mode == 'default':
+            self.load_json("fine-tune/default.json")
+        elif mode == 'test':
+            self.load_json("fine-tune/test.json")
         else:
-            raise FileNotFoundError()
+            try:
+                self.load_json(path)
+            except:
+                self.load_json("fine-tune/default.json")
 
     def init_chatgpt(self, wallet_address):  # TODO: Add Parallel Support
-        self.history = self.load_history()
+        self.wallet_address = wallet_address
+        self.load_history(mode='test')
         # self.history.append(
         #     {
         #         "role": "system",
@@ -54,36 +53,53 @@ class Terminal3(object):
         #                    "\"Parameters\":{text}, \"Comment\":{text}}. DO NOT output any extra words.",
         #     }
         # )
-
         answer = self.start_chat(wallet_address, "Hello, tell me about you.")
 
         return answer
 
     def start_chat(self, wallet_addr, question):
+        self.wallet_address = wallet_addr
         if self.verbose:
             print(wallet_addr)
             print(question)
 
         if question.lower() == "save":
             json_data = json.dumps(self.history)
-            with open(self.his_path, "w") as history_file:
+            with open("fine-tune/user/%s.json" % wallet_addr, "w") as history_file:
                 history_file.write(json_data)
-                return ({"Action": "save_history",
+            return ({"Action": "save_history",
                          "Parameters": "none",
                          "Comment": "Save your chat history"
                          })
 
+        if question.lower() == "load":
+            self.load_history(mode='user')
+            return ({"Action": "load_history",
+                         "Parameters": "none",
+                         "Comment": "Load your chat history"
+                         })
+
+        if question.lower() == "load default":
+            self.load_history(mode='test')
+            return ({"Action": "load_history",
+                         "Parameters": "none",
+                         "Comment": "Load your chat history"
+                         })
+
         elif question.lower() == "history":
+            list = self.history[3:]
+            print(self.history)
+            _tmp = []
+            for li in list:
+                if li["role"] == "user":
+                    _tmp.append(li)
+
             return ({"Action": "show_history",
-                     "Parameters": self.history[3:],
+                     "Parameters": _tmp,
                      "Comment": "Your chat history is list as follows:"
                      })
 
         self.history.append({"role": "user", "content": question})
-
-        # TODO: ADD Multi-Wallet Support
-        # wallet_addr = wallet_addr
-        # customized_addr = 'fine-tune/%s' % wallet_addr
 
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",

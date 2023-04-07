@@ -63,7 +63,7 @@ class Terminal3(object):
             print(wallet_addr)
             print(question)
 
-        if question.lower() == "save":
+        if question.lower().strip() == "save":
             json_data = json.dumps(self.history)
             with open("fine-tune/user/%s.json" % wallet_addr, "w") as history_file:
                 history_file.write(json_data)
@@ -72,21 +72,21 @@ class Terminal3(object):
                          "Comment": "Save your chat history"
                          })
 
-        if question.lower() == "load":
+        if question.lower().strip() == "load":
             self.load_history(mode='user')
             return ({"Action": "load_history",
                          "Parameters": "none",
                          "Comment": "Load your chat history"
                          })
 
-        if question.lower() == "load default":
+        if question.lower().strip() == "load default":
             self.load_history(mode='test')
             return ({"Action": "load_history",
                          "Parameters": "none",
                          "Comment": "Load your chat history"
                          })
 
-        elif question.lower() == "history":
+        elif question.lower().strip() == "history":
             list = self.history[3:]
             print(self.history)
             _tmp = []

@@ -41,7 +41,6 @@ class Terminal3(object):
 
     def init_chatgpt(self, wallet_address):  # TODO: Add Parallel Support
         self.history = self.load_history()
-
         # self.history.append(
         #     {
         #         "role": "system",
@@ -56,8 +55,7 @@ class Terminal3(object):
         #     }
         # )
 
-        print("Init Done.")
-        answer = self.start_chat(wallet_address, "Hello")
+        answer = self.start_chat(wallet_address, "Hello, tell me about you.")
 
         return answer
 

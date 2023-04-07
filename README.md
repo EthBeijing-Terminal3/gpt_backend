@@ -52,5 +52,16 @@ Error (HTTP Status Code: 500)
 curl -X POST -H "Content-Type: application/json" -d '{"wallet_address": "0x12345", "prompt": "Hello"}' http://localhost:5000/chat
 ```
 
+### References:
+1. https://www.mlq.ai/fine-tuning-gpt-3-question-answer-bot/
+2. https://github.com/openai/openai-cookbook/blob/main/examples/fine-tuned_qa/olympics-2-create-qa.ipynb
+3. https://platform.openai.com/docs/guides/fine-tuning/advanced-usage
+4. https://dagster.io/blog/chatgpt-langchain
+5. https://gist.github.com/veekaybee/6f8885e9906aa9c5408ebe5c7e870698
+6. https://arxiv.org/abs/2005.14165
+7. https://github.com/Vinithavn/Finetune-GPT-3-for-customer-support-chatbot-
+8. https://github.com/karpathy/nanoGPT
+9. https://github.com/openai/openai-cookbook/blob/main/examples/fine-tuned_qa/olympics-3-train-qa.ipynb
+10. https://github.com/openai/openai-cookbook/blob/main/examples/fine-tuned_qa/olympics-1-collect-data.ipynb
 
 

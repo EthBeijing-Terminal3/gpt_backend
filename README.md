@@ -5,6 +5,7 @@ A gpt-3.5-turbo based backend. This API allows users to interact with the chat s
 ## Endpoints
 
 ### POST /chat
+### POST /init
 
 Starts a new chat based on the provided wallet address and prompt.
 

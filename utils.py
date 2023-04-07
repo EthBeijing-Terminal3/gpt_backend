@@ -70,7 +70,16 @@ class Terminal3(object):
             json_data = json.dumps(self.history)
             with open(self.his_path, "w") as history_file:
                 history_file.write(json_data)
-                return ({"Action": "Save History"})
+                return ({"Action": "save_history",
+                         "Parameters": "none",
+                         "Comment": "Save your chat history"
+                         })
+
+        elif question.lower() == "history":
+            return ({"Action": "show_history",
+                     "Parameters": self.history[3:],
+                     "Comment": "Your chat history is list as follows:"
+                     })
 
         self.history.append({"role": "user", "content": question})
 

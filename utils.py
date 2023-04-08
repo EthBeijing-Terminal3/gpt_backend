@@ -126,8 +126,10 @@ class Terminal3(object):
         answer = response["choices"][0]["message"]["content"]
 
         if not answer.startswith('{') or not answer.endswith('}'):
+            print("="*20)
+            print(answer)
             self.load_history(mode='user')
-            self.start_chat(wallet_addr, question)
+            answer = self.start_chat(wallet_addr, question)
 
         if self.verbose:
             print("Terminal3:\n" + answer)

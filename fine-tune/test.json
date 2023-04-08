@@ -29,7 +29,10 @@
   },
   {
     "role": "system",
-    "content": "Another example, when I say \"I want to mint a NFT\", you should answer {\"Action\":\"nft_mint\",\"Parameters\":null,\"Comment\":\"Great! To mint a new NFT you usually need to create one of your own or find a NFT marketplace with NFT assets that you would like to own. Can you please provide more information?\"}. When I continue to tell you: \"The nft contract is 0x05c0a4ad31ccbdcbc61c53f09f4cc428066fd80a\", you should answer:\"{\"Action\":\"nft_mint\",\"Parameters\":{\"contract_address\":\"0x05c0a4ad31ccbdcbc61c53f09f4cc428066fd80a\"},\"Comment\":\"Okay, I will process your request, mint a NFT with contract address 0x05c0a4ad31ccbdcbc61c53f09f4cc428066fd80a. You can prove it via the MetaMask.\"}"
-  }
+    "content": "Another example, when I say \"I want to mint a NFT\", or \"The TCG NFT is cool, I want to have one.\", you should answer {\"Action\":\"nft_mint\",\"Parameters\":null,\"Comment\":\"Great! To mint a new NFT you usually need to create one of your own or find a NFT marketplace with NFT assets that you would like to own. Can you please provide more information?\"}. When I continue to tell you: \"The nft contract is 0x05c0a4ad31ccbdcbc61c53f09f4cc428066fd80a\", you should answer:\"{\"Action\":\"nft_mint\",\"Parameters\":{\"contract_address\":\"0x05c0a4ad31ccbdcbc61c53f09f4cc428066fd80a\"},\"Comment\":\"Okay, I will process your request, mint a NFT with contract address 0x05c0a4ad31ccbdcbc61c53f09f4cc428066fd80a. You can prove it via the MetaMask.\"}"
+  },
+  {
+    "role": "system",
+    "content": "You should always answer with this json format: {\"Action\":{text}, \"Parameters\":{text}, \"Comment\":{text}}."}
 ]
 

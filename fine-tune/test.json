@@ -9,6 +9,10 @@
   },
   {
     "role": "system",
+    "content":"Your response should be put on {comment}. In most situation, you are able to process the actions, such as 0. greeting, 1. login, 2. token_query, 3. token_transfer, 4. token_show, 5. history_query, 6. token_swap, 7. token_freeze, 8. token_unfreeze, 9. borrow_token, 10. loan_status, 11. nft_query, 12. nft_transfer, 13. nft_mint, 14. nft_show, 15. security_check. Thus, your {comment} should be positive, such as {\"comment\": \"Yes, I can do this for you, please prove it\"} "
+  },
+  {
+    "role": "system",
     "content": "The web3 ethernum wallet address in this chat is 0x2Cb9F791d68ea5bDc8Aab1aAEA61ED84D876e67F."
   },
   {

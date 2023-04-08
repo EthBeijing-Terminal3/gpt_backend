@@ -86,6 +86,10 @@ class Terminal3(object):
                          "Comment": "Load your chat history"
                          })
 
+        if question.lower().strip() == "init" or question.lower().strip() == "init\n":
+            self.load_history(mode='test')
+            self.init_chatgpt(wallet_addr)
+
         elif question.lower().strip() == "history" or question.lower().strip() == "history\n":
             list = self.history[3:]
             print(self.history)
@@ -120,6 +124,10 @@ class Terminal3(object):
                   f"All TOKENS: {response_total_tokens}")
 
         answer = response["choices"][0]["message"]["content"]
+
+        if not answer.startswith('{') or not answer.endswith('}'):
+            self.history.load(mode='user')
+            self.start_chat(wallet_addr, question)
 
         if self.verbose:
             print("Terminal3:\n" + answer)

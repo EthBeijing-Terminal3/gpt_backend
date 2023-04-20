@@ -49,7 +49,7 @@ class QA():
             maximum -= l
             if maximum < 0:
                 context = context[:index + 1]
-                print("超过最大长度，截断到前", index + 1, "个片段")
+                print("Exceed Tokens", index + 1, "Paras")
                 break
 
         text = "\n".join(f"{index}. {text}" for index, text in enumerate(context))
@@ -66,7 +66,7 @@ class QA():
                 {'role': 'user', 'content': query},
             ],
         )
-        print("使用的tokens：", response.usage.total_tokens)
+        print("Used tokens：", response.usage.total_tokens)
         return response.choices[0].message.content
 
 

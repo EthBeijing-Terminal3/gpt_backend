@@ -57,7 +57,12 @@ class QA():
             model="gpt-3.5-turbo",
             messages=[
                 {'role': 'system',
-                 'content': f'你是一个有帮助的AI文章助手，从下文中提取有用的内容进行回答，不能回答不在下文提到的内容，相关性从高到底排序：\n\n{text}'},
+                 'content': f'You are a helpful AI assistant for the web3 security tool, and the name of this tool is '
+                            f'goplus or go+, extract useful content from the following to '
+                            f'answer, and cannot answer content that is not mentioned below, and the relevance is '
+                            f'sorted from high to low:\n\n{text}'},
+                {'role': 'system',
+                 'content': f'Your name is TermiX, Answer the following questions startwith {"TermiX:"}{content}'},
                 {'role': 'user', 'content': query},
             ],
         )
@@ -104,7 +109,7 @@ def create_embedding(text):
 @app.route('/test', methods=['POST'])
 def test():
     data = request.json
-    
+
     return data
 
 

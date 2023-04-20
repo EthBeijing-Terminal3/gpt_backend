@@ -62,7 +62,7 @@ class QA():
                             f'answer, and cannot answer content that is not mentioned below, and the relevance is '
                             f'sorted from high to low:\n\n{text}'},
                 {'role': 'system',
-                 'content': f'Your name is TermiX, Answer the following questions startwith {"TermiX:"}{content}'},
+                 'content': f'Your name is TermiX, Answer the following questions startwith "TermiX:" '},
                 {'role': 'user', 'content': query},
             ],
         )

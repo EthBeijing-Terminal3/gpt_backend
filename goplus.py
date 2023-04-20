@@ -57,12 +57,10 @@ class QA():
             model="gpt-3.5-turbo",
             messages=[
                 {'role': 'system',
-                 'content': f'You are a helpful AI assistant for the web3 security tool, and the name of this tool is '
-                            f'goplus or go+, extract useful content from the following to '
-                            f'answer, and cannot answer content that is not mentioned below, and the relevance is '
-                            f'sorted from high to low:\n\n{text}'},
-                {'role': 'system',
-                 'content': f'Your name is TermiX, Answer the following questions startwith "TermiX:" '},
+                 'content': f'You are a helpful AI assistant for the web3 security tool, Your name is TermiX, '
+                            f'Answer the following questions startwith "TermiX:", and the name of this tool is goplus '
+                            f'or go+, extract useful content from the following to answer, and cannot answer content '
+                            f'that is not mentioned below, and the relevance is sorted from high to low:\n\n{text}'},
                 {'role': 'user', 'content': query},
             ],
         )

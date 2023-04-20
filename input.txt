@@ -1,0 +1,3352 @@
+Go+ Security APIIntroduction
+Welcome to Go+ Security API document.
+Go+ Security Engine is the leading blockchain security server and platform. As a mean to provide easy
+access to security data, we've developed the Go+ Security API.
+The token security API is currently available.
+Please use what you need.Source attribution via a backlink or a mention that your app is "Powered by GO+ Security" is
+required except for personal/private usage.GoPlus Security API
+Provide you with fast, reliable and convenient security services
+GOPlus Security API has four key points：1.Token Security
+Have Covered EVM chains, detecting 364k+ tokens and finding 183k+ risky tokens.The main components：
+Contract Security, Trading Security, Info Security.
+2.Real-Time Risk Warning
+Real-time monitoring of on-chain data, first warning.The main components：AdminKeyChange, FlashLoan,
+Price Slippage.
+3.dApp Contract Security
+Cover hundreds of major dAPPs and identify dApp contract risks.The main components：Contracts Own
+Vulnerability, FlashLoan Risk, Compatibility Issue, Project Side Security.
+4.Interaction Security
+20K+ phishing sites included.The main components：Phishing Site, Approval Contract, NFT Authenticity,
+Black Address Library.The token security API is currently available. Stay tuned for more content.ReferenceQuick StartGood to know: A quick start guide can be good to help folks get up and running with your API in
+a few steps.Get SDK for Quick Start
+GoPlus SDK for Quick StartGet Supported Blockchains
+Get Supported BlockchainsToken Security API
+Token Security API Response DetailMalicious Address API
+Malicious Address API Response DetailNFT Security API
+NFT Security APIApproval Security APIApproval Security API v1Approval Management API (Approval Security API v2)Signature Data Decode API
+Signature Data Decode APIdApp Security Info API
+dApp Security Info APIPhishing Site Detection API
+Phishing Site Detection APIGoPlus SDK for Quick Start
+The easiest way to connect your dApp to the blockchain security data and get the
+power of GoPlus's security infrastructure. Just download, write a few lines of code,
+and go.Get GoPlus SDK?
+GoPlus SDK currently supports Go and Node.js.
+GoPlus SDK for GoGitHub - GoPlusSecurity/goplus-sdk-go
+GitHubGoPlus SDK for Node.jsGitHub - GoPlusSecurity/goplus-sdk-js
+GitHubWhat is GoPlus SDK?
+GoPlus SDK is one of the most data-rich and risk-detectable security service SDKs available.
+GoPlus SDK integrates the following APIs.APIDescriptionLocationToken Security APIDetect token security and
+identify token risks.​
+https://docs.gopluslabs.io/refere
+nce/token-security-apiresponse-detail​NFT Security APIDetect NFT security and identify
+NFT risks.​
+https://docs.gopluslabs.io/refere
+nce/nft-security-api​Check the address for malicious
+behavior.​
+https://docs.gopluslabs.io/refere
+nce/malicious-address-apiresponse-detail​Malicious Address APIApproval Security API v1Approval Security API v1 mainly
+supports inputting approved
+contracts and detects the
+security of approved contracts.​
+https://docs.gopluslabs.io/refere
+nce/approval-security-api-v1​Approval Management API
+(Approval Security API v2)
+mainly supports inputting a​Approval Management APIEOA, viewing the contractshttps://docs.gopluslabs.io/refere(Approval Security API v2)approved by the address and
+the information of the approvednce/approval-management-api
+approval-security-api-v2​contracts (basic information and
+risk detection).Signature Data Decode APIDecode transaction input data
+and detect it for security.​
+https://docs.gopluslabs.io/refere
+nce/signature-data-decode-apidApp Security Info APIDetect whether the dApps' main
+contracts are open source or
+have malicious behaviors, and
+check whether the dApps are
+audited​
+https://docs.gopluslabs.io/refere
+nce/dapp-security-info-api​Phishing Site Detection APIDetect whether a website is a
+phishing website.​
+https://docs.gopluslabs.io/refere
+nce/phishing-site-detection-apiGet Supported Blockchains
+URL: https://api.gopluslabs.io/api/v1/supported_chains?name=
+Method：GET
+Parameters:
+ParametersRequiredDescriptionnameFalseAPI name.API NameDescriptiontoken_securityToken Security APIaddress_securityMalicious Address APIapproval_securityApproval Security API v1token_approval_securityApproval Security API v2: Token Approval Security APInft721_approval_securitynft1155_approval_securityApproval Security API v2: ERC721 NFT Approval Security
+API
+Approval Security API v2: ERC1155 NFT Approval Security
+APIinput_decodeSignature Data Decode APInft_securityNFT Security APIResponse:ParameterDescriptioncode1 means successmessageOK for success, Error message for failure
+supported blockchain list, in which id is the path
+for token security information API.
+"1" means Ethereum;
+"10" means Optimism;
+“25” means Cronos;
+"56" means BSC;
+“66” means OKC;
+"100" means Gnosis;
+"128" means HECO;
+"137" means Polygon;
+"250" means Fantom;result"321" means KCC;
+"324" means zkSync Era;
+"10001" means ETHW;
+"201022" means FON;
+"42161" means Arbitrum;
+"43114" means Avalanche;
+"59140" means Linea;
+"1666600000" means Harmony;
+"tron" means Tron.Code
+CodeToken Security API Response DetailThe main components：Contract Security, Trading Security, Info Security.GEThttps://api.gopluslabs.io/api/v1/token_security/{chain_id}?contract_addresses=Parameters
+No parametersResponsesMethod: GET
+URL: https://api.gopluslabs.io/api/v1/token_security/{chain_id}?contract_addresses=
+ParametersParameterTypeRequiredDescription
+The chain_id of thechain_idStringTrueblockchain.
+"1" means Ethereum;
+"10" means Optimism;
+“25” means Cronos;
+"56" means BSC;
+“66” means OKC;
+"100" means Gnosis;
+"128" means HECO;
+"137" means Polygon;
+"250" means Fantom;
+"321" means KCC;
+"324" means zkSync Era
+"10001" means ETHW;
+"201022" means FON;
+"42161" means Arbitrum
+"43114" means
+Avalanche;
+"59140" means Linea;
+"1666600000" means
+Harmony;
+"tron" means Tron.contract_addressesStringTrueThe contract address of
+tokens.Request Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Access TokenContract Security Parameters
+Contract SecurityTrading Security Parameters
+Trading SecurityInfo Security Parameters
+Info SecuritySample Response
+sample response for https://api.gopluslabs.io/api/v1/token_security/1?
+contract_addresses=0x408e41876cccdc0f92210600ef50372656052a38 :{
+"code": 1,
+"message": "OK",
+"result": {
+"0x408e41876cccdc0f92210600ef50372656052a38": {
+"is_in_dex": "1",
+"is_open_source": "1",
+"is_proxy": "0",
+"is_true_token": "1",
+"buy_tax": "0",
+"can_take_back_ownership": "0",
+"cannot_sell_all": "0",
+"creator_address": "0x9b1b265e548283430e6ae4721842c448f4bed559",
+"creator_balance": "10",
+"creator_percent": "0",
+"dex": [
+{
+"name": "SushiSwapV2",
+"liquidity": "3086483.28535010",
+"pair": "0x611CDe65deA90918c0078ac0400A72B0D25B9bb1"
+},
+{
+"name": "UniswapV2",
+"liquidity": "593110.60111547",
+"pair": "0x8Bd1661Da98EBDd3BD080F0bE4e6d9bE8cE9858c"
+},
+{
+"name": "UniswapV3",
+"liquidity": "157040.6865661319101705395193775769",
+"pair": "0x2dd56b633faa1a5b46107d248714c9ccb6e20920"
+},
+{
+"name": "UniswapV3",
+"liquidity": "8593.150053",
+"pair": "0x8dd240195b2cd7c0a118166cba02512f52e9e360"
+},
+{
+"name": "UniswapV3",
+"liquidity": "6463.504842668805484531793163914657",
+"pair": "0x08eac73f000d724678281155c879c50fc6094824"
+},
+{
+"name": "UniswapV2",
+"liquidity": "1279.74835168",
+"pair": "0x5e4206B6AA6e919B2bc6E813EA0ffB9B3C8aC042"
+},
+{
+"name": "SushiSwapV2",
+"liquidity": "433.14817365",
+"pair": "0x07d04AaAd8108ca86e0F1c792Bf165f63A5FedDE"
+},{"name": "UniswapV2",
+"liquidity": "253.71074866",
+"pair": "0x07F068ca326a469Fc1d87d85d448990C8cBa7dF9"},
+{
+"name": "UniswapV2",
+"liquidity": "8.84948422",
+"pair": "0x2d0A1c45cD6f7CDb718703d0897c877EFc9dB9F7"
+}
+],
+"holder_count": "59517",
+"holders": [
+{
+"address": "0x60ab11fe605d2a2c3cf351824816772a131f8782",
+"is_locked": 0,
+"tag": "RenVM: Darknode Staking",
+"is_contract": 1,
+"balance": "190300000",
+"percent": "0.190300"
+},
+{
+"address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+"is_locked": 0,
+"tag": "Binance 8",
+"is_contract": 0,
+"balance": "109859372",
+"percent": "0.109859"
+},
+{
+"address": "0xcc12abe4ff81c9378d670de1b57f8e0dd228d77a",
+"is_locked": 0,
+"tag": "Aave: aREN Token V2",
+"is_contract": 1,
+"balance": "57368739.62122353098751391",
+"percent": "0.057369"
+},
+{
+"address": "0xbe0eb53f46cd790cd13851d5eff43d12404d33e8",
+"is_locked": 0,
+"tag": "Binance 7",
+"is_contract": 0,
+"balance": "40000000",
+"percent": "0.040000"
+},
+{
+"address": "0x8d6f396d210d385033b348bcae9e4f9ea4e045bd",
+"is_locked": 0,
+"tag": "Gemini 6",
+"is_contract": 1,
+"balance": "17390001",
+"percent": "0.017390"
+},{"address": "0x28c6c06298d514db089934071355e5743bf21d60",
+"is_locked": 0,
+"tag": "Binance 14",
+"is_contract": 0,
+"balance": "13714495.247848966044514547",
+"percent": "0.013715"},
+{
+"address": "0x6cc5f688a315f3dc28a7781717a9a798a59fda7b",
+"is_locked": 0,
+"tag": "OKEx",
+"is_contract": 0,
+"balance": "13632492.016596650137406256",
+"percent": "0.013632"
+},
+{
+"address": "0x30e84f627ebc336eee72cd720a837e6f75d865d5",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "13205867.071569348075742885",
+"percent": "0.013206"
+},
+{
+"address": "0x2faf487a4414fe77e2327f0bf4ae2a264a776ad2",
+"is_locked": 0,
+"tag": "FTX Exchange",
+"is_contract": 0,
+"balance": "12274585.835420964580064505",
+"percent": "0.012275"
+},
+{
+"address": "0x5a52e96bacdabb82fd05763e25335261b270efcb",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "10465958",
+"percent": "0.010466"
+}
+],
+"is_anti_whale": "0",
+"is_blacklisted": "0",
+"is_honeypot": "0",
+"is_mintable": "0",
+"is_whitelisted": "0",
+"lp_holder_count": "147",
+"lp_holders": [
+{
+"address": "0xfc07f5f616193db30c70423d7d96217e2fb04682",
+"is_locked": 0,
+"tag": "","is_contract":
+0,
+"balance": "6273.876103504917066567",
+"percent": "0.679651"
+},
+{
+"address": "0x9793fe3ce47d7f0939353e4e731d57b9c0bb623a",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "342.343466622386403758",
+"percent": "0.037086"
+},
+{
+"address": "0x4945c4f9a72ca6b86518758499005e280834003f",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "206.72170713300080538",
+"percent": "0.022394"
+},
+{
+"address": "0x61b497e54f6da155f0e38fd79d65a7daee7a8f3d",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "189.989508753129118904",
+"percent": "0.020582"
+},
+{
+"address": "0x5e1ddd11ccfa137a7b91c103f36c88a3e43f4ab1",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "142.65139303435340837",
+"percent": "0.015453"
+},
+{
+"address": "0x8f11a1f0c189347fb0479f84e8cd8b7dfbd52c7d",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "132.646048157518308472",
+"percent": "0.014370"
+},
+{
+"address": "0x11619d7d52b35980e2a6c40e76e13cc06b6858d1",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "103.737485380477846697",
+"percent": "0.011238"
+},
+{"address": "0x4d8106c1dbf9a2f06133d5b51780a1bc22286a66",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "93.114219207940659276",
+"percent": "0.010087"
+},
+{
+"address": "0x7a21881bb29f53970ca9cfdecd199789e23f5880",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "92.226142658043597113",
+"percent": "0.009991"
+},
+{
+"address": "0x91f84b22a64c0c4b7289c087f4ac549881131183",
+"is_locked": 0,
+"tag": "",
+"is_contract": 0,
+"balance": "88.252831538508955544",
+"percent": "0.009560"
+}
+],
+"lp_total_supply": "9231.023517826068380023",
+"owner_address": "0x0000000000000000000000000000000000000001",
+"owner_balance": "0",
+"owner_change_balance": "0",
+"owner_percent": "0",
+"sell_tax": "0",
+"slippage_modifiable": "0",
+"total_supply": "999999632.80375",
+"transfer_pausable": "1",
+"token_name": "Republic Token",
+"token_symbol": "REN"
+}
+}
+}Code
+CodeAPI License AgreementAPI License AgreementContract Security
+Method: GET
+URL: https://api.gopluslabs.io/api/v1/token_security/{chain_id}?contract_addresses=
+Request Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Response ParametersSecurity itemsParameterDescriptionNotice
+Un-open-sourcedOpen Sourceis_open_sourceIt describes whether this
+contract is open source.
+"1" means true;
+"0" means false.contracts may hide
+various unknown
+mechanisms and are
+extremely risky. When th
+contract is not open
+source, we will not be
+able to detect other risk
+items.
+(1) When
+"is_open_source": "0",
+there will be no return.Proxy Contractis_proxyIt describes whether this
+contract has a proxy
+contract.
+"1" means true;(2) Most Proxy contracts
+are accompanied by
+modifiable
+implementation contracts"0" means false;
+No return means
+unknown.and implementation
+contracts may contain
+significant potential risk.
+When the contract is a
+Proxy, we will stop
+detecting other risk items
+(1) When
+"is_open_source": "0",Mint Functionis_mintableIt describes whether this
+contract has the
+function to mint tokens.
+"1" means true;
+"0" means false;
+No return means
+unknown.there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there will
+be no return.
+(3) Mint function will
+directly trigger a massive
+sell-off, causing the coin
+price to plummet. It is
+extremely risky.
+(4) This function general
+relies on ownership.
+When the contract does
+not have an owner (or if
+the owner is a black hole
+address) and the owner
+cannot be retrieved, this
+function will most likely b
+disabled.
+(1) When"is_open_source": "0",
+there
+will be no when
+return.
+(2) Sometimes,Owner Addressowner_addressIt describes this"is_proxy": "1", there willcontract's owner
+address.be no return.
+(3) Ownership is mostlyExample:used to adjust the"owner_address":
+"0x744aF9cBb7606BBparameters and status of
+the contract, such as040f6FBf1c0a0B0dcBAminting, modification of6385E5";
+No return meansslippage, suspension of
+trading, setting blacklist,unknown; Return emptyetc.means there is no
+ownership or can't findWhen the contract does
+not have an owner (or ifownership.the owner is a black hole
+address) and the owner
+cannot be retrieved, thes
+functions will most likely
+be disabled.
+(1) When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there will
+be no return.It describes whether this
+contract has theTake back Ownershipcan_take_back_o
+wnershipfunction to take back
+ownership.
+"1"
+"0" means
+means true;
+false;
+No return means
+unknown.(3) Ownership is mostly
+used to adjust the
+parameters and status of
+the contract, such as
+minting, modification of
+slippage, suspension of
+trading, setting blacklsit,
+etc.
+When the contract does
+not have an owner (or if
+the owner is a black hole
+address) and the owner
+cannot be retrieved, thes
+functions will most likely
+be disabled.
+(1) When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there will
+be no return.
+(3) Token with this featurIt describes whether themeans that the owner cacontract owner has themodify anyone's balance
+resulting in an asset
+straight to zero or a
+massive minting and selOwner Can Changeowner_change_bauthority to change the
+balance of any tokenBalancealanceholder.
+"1" means true;
+"0" means false;
+No return means
+unknown.off.
+(4) This function general
+relies on ownership.
+When the contract does
+not have an owner (or if
+the owner is a black hole
+address) and the owner
+cannot be retrieved, this
+function will most likely b
+disabled.
+(1) WhenIt describes whether the
+contract has hidden
+owners. For contract
+with a hidden owner,With hidden ownerhidden_ownerdeveloper can still
+manipulate the contract
+even if the ownership
+has been abandoned.
+“1” means true;
+"0" means false;
+No return means
+unknown.It describes whether this
+contract can self
+destruct.
+Self-destructselfdestruct"1" means true;
+"0" means false;
+No return means
+unknown."is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there will
+be no return.
+(3) Hidden owner is often
+used by developers to
+hide ownership and is
+often accompanied by
+malicious functionality.
+When the hidden owner
+exists, it is assumed that
+ownership has not been
+abandoned.
+(1) When
+"is_open_source": "0",
+there will be no return.
+(2) When the self-destruc
+function is triggered, this
+contract will be destroye
+all functions will be
+unavailable, and all
+related assets will be
+erased.With external callexternal_callIt describes whether the(1) Whencontract would call
+functions of other
+contracts when primary"is_open_source": "0",
+there will be no return.
+(2) External call wouldmethods are executed.
+"1" means true;cause the implementatio
+of this contract to be"0"
+false;
+No means
+return meanshighly dependent on othunknown.external contracts, which
+may be a potential riskTrading Security
+Method: GET
+URL: https://api.gopluslabs.io/api/v1/token_security/{chain_id}?contract_addresses=
+Request Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Response ParametersSecurity itemsParameterDescriptionNotice
+(1) When "is_in_dex": "0
+there will be no return.
+(2) Buy tax will cause th
+actual value received
+when buying a token to
+be less than expected,
+and too much buy tax
+may lead to heavy losseBuy Taxbuy_taxIt describes the tax
+when buying the token.(3) When "buy_tax": "1",
+means buy tax is 100%
+cannot buy.Example: "buy_tax":
+0.1%.
+No return means(4) Sometimes token's
+anti-bot mechanism
+would affect our sandbounknown.system, leading to
+"cannoy_buy": "1",
+causing the display of
+"buy_tax": "1".
+(5)Some of the token is
+deisgned not for sale,
+leading to
+"cannot_buy":1, causing
+the display of "buy_tax":
+"1".
+(1) When "is_in_dex": "0Sell Taxsell_taxIt describes the tax
+when selling the token.
+Example: "sell_tax":
+0.1%.
+No return means
+unknown.there will be no return.
+(2) Sell tax will cause th
+actual value received
+when selling a token to
+be less than expected,
+and too much buy tax
+may lead to large losses
+(3) When "sell_tax": "1",
+means sell-tax is 100%
+this token cannot be sold
+(4) Sometimes token's
+trading-cool-down
+mechanism would affect
+our sandbox system.
+When
+"trading_cooldown": "1"
+"sell_tax" may return "1"
+(1) Generally,
+"cannot_buy": "1" wouldbe found in Reward
+Tokens. Such Tokens ar
+issued as rewards for
+It deiscribes whether
+the Token can be
+bought.
+Cannot be boughtcannot_buysome on-chain
+applications and cannot
+be bought directly by"1" means true;
+"0" means false;users.
+(2) Sometimes token's
+anti-bot mechanismNo return meanswould affect our sandbounknown.system, causing the
+display of "buy_tax": "1"
+(3) When “cannot_buy”:
+"1", our sandbox system
+might be bloked, causin
+the display of "buy_tax":
+"1" and "sell_tax": "1"
+(1) When "is_in_dex": "0
+there will be no return.It describes whether
+the contract has the
+function restricting
+Cannot Sell Allcannot_sell_alltoken holder selling all
+the token.
+"1" means true;
+"0" means false;
+No return means
+unknown.(2) This feature means
+that you will not be able
+to sell all your tokens in
+single sale. Sometimes
+you need to leave a
+certain percentage of the
+token, e.g. 10%,
+sometimes you need to
+leave a fixed number of
+token, such as 10 token
+(3) When "buy_tax": "1",
+there will be no return.Modifiable Taxslippage_modifiableIt describes whether
+the trading tax can be
+modifiable by token
+contract.
+"1" means true;
+"0" means false;
+No return means(1) When When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there wil
+be no return.
+(3) Token with modifiabl
+tax means that the
+contract owner can
+modify the buy tax or se
+tax of the token. This ma
+cause some losses,
+especially since some
+contracts have unlimited
+modifiable tax rates,unknown.which
+make the
+(4)
+Thiswould
+function
+token
+untradeable.
+generally relies on
+ownership. When the
+contract does not have a
+owner (or if the owner is
+black hole address) and
+the owner cannot be
+retrieved, this function w
+most likely be disabled.It describes whether
+the token is a
+honeypot. "HoneyPot"
+means that the token
+maybe cannot be sold
+because of the token
+Honeypotis_honeypotcontract's function, Or
+the token contains
+malicious code.
+"1" means true;
+"0" means false;(1) When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there wil
+be no return.
+(3) Hight risk, definitely
+scam.No return means
+unknown.
+(1) When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there wilPausable Transfertransfer_pausableIt describes whether
+trading can be
+pausable by token
+contract.
+"1" means true;
+"0" means false;
+No return means
+unknown.be no return.
+(3) This feature means
+that the contract owner
+will be able to suspend
+trading at any time, after
+that anyone will not be
+able to sell, except those
+who have special
+authority.
+(4) This function
+generally relies on
+ownership. When the
+contract does not have a
+owner (or if the owner is
+black hole address) and
+the owner cannot be
+retrieved, this function w
+most likely be disabled.
+(1) When"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there wilBlacklistis_blacklistedIt describes whether
+the blacklist function isbe no return.
+(3) The contract ownernot included in the
+contract. If there is amay add any address in
+the blacklist, and theblacklist, some
+addresses may not be
+able to trade normally.token holder in blacklist
+will not be able to trade.
+Abuse of the blacklist"1" means true;
+"0" means false;function will lead to grea
+risks.No return means
+unknown.(4) For contracts without
+an owner (or the owner
+a black hole address), th
+blacklist will not be able
+to get updated. Howeve
+the existing blacklist is
+still in effect.
+(1) When
+"is_open_source": "0",
+there will be no return.Whitelistis_whitelistedIt describes whether(2) Sometimes, when
+"is_proxy": "1", there wilthe whitelist function is
+not included in the
+contract. If there is abe no return.
+(3) Whitelisting is mostly
+used to allow specificwhitelist, some
+addresses may not beaddresses to make early
+transactions, tax-free, anable to trade normally.
+"1" means true;
+"0" means false;not affected by
+transaction suspension.
+(4) For contracts withoutNo return means
+unknown.an owner (or the owner
+a black hole address), th
+whitelist will not be able
+to get updated. Howeve
+the existing whitelist is
+still in effect.It describes whether
+In main Dexis_in_dexthe token can be traded
+on the main Dex.
+"1" means true;
+"0" means falseIt only counts when the
+token has a marketing
+pair with mainstream
+coins/tokens.It describes Dex
+information of where
+the token that can be(1) When "is_in_dex": "0traded.Dex infodexExample:
+"dexs"there will be empty array
+(2) It only counts when
+the token has a marketin[{"name":"PancakeV2",
+"liquidity":1.350124503pair with mainstream
+coins/tokens.851149,"pair":"0x7148
+76f7cc6978a44967aBa
+F89B5a947a3B4906d"(3) Liquidity is converted
+to USDT denomination.}]
+It describes whetherAnti Whaleis_anti_whalethe contract has the
+function to limit the
+maximum amount of(1) Whentransactions or the
+maximum token"is_open_source": "0",
+there will be no return.position that for single
+address.(2) Sometimes, when
+"is_proxy": "1", there wil"1" means true;
+"0" means false;
+No return meansbe no return.unknown.
+It describes whether
+the contract has the
+function to modify the
+maximum amount of
+Modifiable anti whaleanti_whale_modifiabl
+etransactions or the
+maximum token
+position.
+"1" means true;
+"0" means false;
+No return means
+unknown.
+It describes whether
+the contract has
+trading-cool-downTrading with
+CooldownTimemechanism which can
+limits the minimum time
+trading_cooldownbetween two
+transactions.
+"1" means true;
+"0" means false;
+No return means(1) When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there wil
+be no return.
+(3)When the anti whale
+value is set to a very
+small value, all tradinge
+would fail.(1) When
+"is_open_source": "0",
+there will be no return.
+(2) Sometimes, when
+"is_proxy": "1", there wil
+be no return.unknown.
+(1) When
+"is_open_source": "0",there
+will be no when
+return.
+(2)
+Sometimes,
+"is_proxy": "1", there wil
+be no return.Assinged Address'
+Slippage is Modifiablepersonal_slippage_
+modifiableIt describes whether
+the owner can set a
+different tax rate for(3) The contract owner
+may set a very
+outrageous tax rate forevery assigned
+address.assigned address to
+block it from trading."1" means ture;
+"0" means false;Abuse of this funtcion w
+lead to great risks.No return means
+unknown.(4) For contracts without
+an owner (or the owner
+a black hole address),
+this function would not
+able to be used.
+However, the existing ta
+rate would be still in
+effect.Info Security
+Method: GET
+URL: https://api.gopluslabs.io/api/v1/token_security/{chain_id}?contract_addresses=
+Request Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Response ParametersSecurity itemsParameterDescriptionNoticeToken Nametoken_name​​Token Symboltoken_symbol​​holder_countIt describes the number
+of token holders.
+Example:"holder_coun
+t": "4342"​Token holder numberToken Total Supplytotal_supplyIt describes the supply
+number of the token.
+Example:"total_supply"
+: 100000000​It describes top10
+holders info. The info
+includes:
+(1) "address" describes
+the holder address;
+(2) "locked." describes
+whether the tokens
+owned by the holder
+are locked "1" means
+true; "0" means false;
+(3) “tag” describes the
+address's public tag.Top10 holders info"holders":[{ "address":
+"0x744aF9cBb7606BB
+040f6FBf1c0a0B0dcB
+A6385E5", "locked": 1,
+"tag": "", "is_contract":
+1, "balance":
+10000000, "percent":
+0.1 "locked_detail": [
+{"amount":
+"99619.047369140000
+000000", "end_time":
+"2022-0417T00:00:00+00:00",
+"opt_time": "2022-0117T05:44:54+00:00" }]Example:Burn
+Address/Deployer;
+(4) “is_contract”
+describes whether the
+holder is a contract "1"
+means true; "0" means
+false.
+(5) “balance” describes
+the balance of the
+holder.
+(6) "percent" describes
+the percentage of
+tokens held by this
+holder
+(7) "locked_detail" is
+an array, decribes lock
+position info of this
+holder, only shows
+when "locked": 1. This
+Array may contain
+multiple objects for(1) About "locked": W
+only support the token
+lock addresses or
+black hole addresses
+that we have included
+(2) When "locked":0,
+lock address is a blac
+hole address,
+"locked_detail" will be
+no return.
+(3) About "percent": 1
+means 100% here.multiple locking info. In
+every objetc, "amount"
+describes the number
+of token locked,
+"end_time" describes
+when the token will be
+unlocked, "opt_time"
+describes when the
+token was locked.
+It describes the
+balance of the contract
+owner.
+Example:
+Owner Balanceowner_balance"owner_balance":
+"100000000".
+No return or return
+empty means there isWhen
+"owner_address"
+returns empty, or no
+return, there will be no
+return.no ownership or can't
+find ownership.
+It describes the
+percentage of tokens
+held by the contract
+Token Percentage of
+Ownerowner_percentowner.
+Example:"owner_bala
+nce": "0.1".
+No return or return
+empty means there is
+no ownership or can't
+find ownership.Creator AddressCreator Balance(1) 1 means 100%
+here.
+(2) When
+"owner_address"
+returns empty, or no
+return, there will be no
+return.creator_addressIt describes this
+contract's owner
+address.
+Example:
+"creator_address":
+"0x744aF9cBb7606BB
+040f6FBf1c0a0B0dcB
+A6385E5";​creator_balanceIt describes the
+balance of the contract
+owner.
+Example:"owner_bala
+nce": 100000000.​It describes the
+percentage of tokensToken Percentage ofcreator_percentCreatorheld by the contract1 means 100% here.owner.
+Example:"owner_bala
+nce": 0.1.
+It describes the number
+of LP token holders.LP token holder
+numberlp_holder_countExample:"lp_holder_cWhen "is_in_dex": "0ount": "4342".there will be no returnNo return means no
+LP.
+It describes the supply
+number of the LP
+token.
+LP Token Total Supplylp_total_supplyExample:"lp_total_sup
+ply": "100000000".
+No return means no
+LP.(1) When "is_in_dex"
+"0", there will be no
+return.
+(2) It is LP token
+number, NOT token
+numberIt describes top10 LP
+holders info. The info
+includes:
+(1) "address" describes
+the holder address;
+(2) "locked" describes
+whether the tokens
+owned by the holder
+are locked. "1" means"lp_holders":[{
+"address":
+"0x744aF9cBb7606BB
+040f6FBf1c0a0B0dcB
+A6385E5", "locked": 1,
+"tag": "", "is_contract":Top10 LP token
+holders info1, "balance":
+10000000, "percent":
+0.1 "locked_detail": [
+{"amount":
+"99619.047369140000
+000000", "end_time":
+"2022-0417T00:00:00+00:00",
+"opt_time": "2022-01-true; "0" means false;
+(3) “tag” describes the
+address's public tag.
+Example:Burn
+Address/Deployer;
+(4) “is_contract”
+describes whether the
+holder is a contract "1"
+means true; "0" means
+false.
+(5) “balance” describes
+the balance of the
+holder.
+(6) "percent" describes
+the percentage of
+tokens held by this
+holder
+(7) "locked_detail" is
+an array, decribes lock
+position info of this
+holder, only shows(1) When "is_in_dex"
+"0", there will be no
+return.
+(2) About "locked": W
+only support the token
+lock addresses or
+black hole addresses
+that we have included
+(3) About "percent": 1
+means 100% here.
+(4) When "locked":"0"
+or lock address is a
+black hole address,
+"locked_detail" will be
+no return.17T05:44:54+00:00" }]when "locked": "1".}] }]This Array may contain
+multiple objects for
+multiple locking info. In
+every objetc, "amount"
+describes the number
+of token locked,
+"end_time" describes
+when the token will be
+unlocked, "opt_time"
+describes when the
+token was locked.
+No return means no
+LP.
+It describes whether
+the token is true or
+fake.True/Fake Tokenis_true_token"1" means true token;
+"0" means fake token;
+None means no result
+(Because we did notOnly "is_true_token":
+"0" means it is a fake
+token.find decisive
+information about the
+truth or falsity)
+It describes whether
+the token is an airdrop
+scam.
+"1" means true;
+"0" means false;
+Airdrop Scamis_airdrop_scamNone means no result
+(Because We did not
+find conclusive
+information on whether
+token is an airdropOnly
+"is_airdrop_scam": "1
+means it is an airdrop
+scam.scam).
+It describes whether
+the token is a famous
+and trustworthy one.
+"1" means true; No
+Trust Listtrust_listreturn no result
+(Because We did not
+find conclusive
+information on whether
+token is a airdrop
+scam).(1) Only "trust_list": "1
+means it is a famous
+and trustworthy token
+(2) No return doesn't
+mean it is risky.It describes whetherOther Potential Risksother_potential_risksthe contract has other
+potential risks.
+Example:
+“other_potential_risks”:
+“Owner can set
+different transaction
+taxes for each user,(1) If we haven't found
+any other potential ris
+yet, there will be no
+return.
+(2) Type: string.which can trigger
+serious losses.”
+It describes whetherNotenotethe contract has other
+things investors need(1) If we haven't found
+any other thing whichto know.
+Example:
+"note”: “Contract owneris valuable yet, there
+will be no return.
+(2) Type: string.is a multisign contract.”Change Logs
+04/11/2023
+V1.1.24
+New FeatureDescriptionLocationImportanceNew Chain
+supported: zkSync
+EraChain ID: 324; Dex
+supported: mute.iohttps://docs.goplusla
+bs.io/reference/quick
+-start/goplus-sdk-for-Highquick-start02/20/2023
+V1.1.19
+New FeatureDescriptionLocationImportanceNew Chain
+supported:
+Linea(ConsensysChain ID: 59140; Dex
+supported: Uniswaphttps://docs.goplusla
+bs.io/reference/quick
+-start/goplus-sdk-for-HighzkEVM)quick-start02/02/2023
+V1.1.18
+New FeatureDescriptionNew Chain
+supported: FONChain ID: 201022; Dex
+supported: RosSwap.01/28/2023
+V1.1.17Locationhttps://docs.goplusla
+bs.io/reference/quick
+-start/goplus-sdk-forquick-startImportanceHighNew FeatureDescriptionLocationIt describes whether the
+New parameter:
+anti_whale_modifia
+blecontract has the function to
+modify the maximum
+amount of transactions or
+the maximum token
+position.ImportanceHigh: This parameter is
+https://docs.goplusla
+bs.io/reference/toke
+n-security-apiresponse-detailhighly relevant to
+malicious functions.
+Please make sure you
+access to it.01/18/2023
+V1.1.16
+New FeatureDescriptionOptimized minting function
+detection algorithm.AlgorithmOptimized blacklistoptimization:
+is_blacklistedfunction detection
+algorithm.is_honeypotImportance
+Low: The algorithm hasAlgorithm
+optimization:
+is_mintableAlgorithm
+optimization:Locationbeen automatically
+upgraded, you don't need
+to change anything.
+Low: The algorithm has
+been automatically
+upgraded, you don't need
+to change anything.
+Low: The algorithm has
+been automatically
+upgraded, you don't need
+to change anything.Optimized honeypot
+detection algorithm.11/09/2022
+V1.1.15
+New FeatureNew locker supported:
+Fatsale10/13/2022
+V1.1.14DescriptionFatesale locker is
+supportedLocationImportance
+Low: The algorithm ha
+been automatically
+upgraded, you don't
+need to change
+anything.New Feature
+Algorithm
+optimization:
+hidden_ownerDescriptionLocationOptimized minting
+function detection
+algorithm.Importance
+Low: The algorithm has been
+automatically upgraded, you don't
+need to change anything.09/16/2022
+V1.1.13
+New FeatureDescriptionAlgorithm optimization:Optimized the buy-in tax
+rate detection for assetsbuy_taxAlgorithm optimization:
+personal_slippage_mo
+difiableAlgorithm optimization:
+is_mintable07/28/2022
+V1.1.12that can only be traded
+in small amounts.Optimized
+personal_slippage_mod
+ifiable detection
+algorithm.Optimized minting
+function detection
+algorithm.LocationImportance
+Low: The algorithm has
+been automatically
+upgraded, you don't
+need to change
+anything.
+Low: The algorithm has
+been automatically
+upgraded, you don't
+need to change
+anything.
+Low: The algorithm has
+been automatically
+upgraded, you don't
+need to change
+anything.New FeatureDescriptionAlgorithm
+optimization:
+hidden_ownerOptimized hidden owner
+detection algorithmNew parameter:
+personal_slippage_
+modifiableNew parameter:
+selfdestructNew parameter:
+external_callIt describes whether the
+owner can set a different
+tax rate for every
+assigned address.LocationImportance
+Low: The algorithm has
+been automatically
+upgraded, you don't nee
+to change anything.https://docs.goplusla
+bs.io/reference/toke
+n-security-apiresponsedetail/tradingsecurityHigh: This parameter is
+highly relevant to
+malicious functions.
+Please make sure you
+access to it.https://docs.goplusla
+bs.io/reference/toke
+n-security-api-High: This parameter is
+highly relevant to
+malicious functions.responsedetail/contractsecurityPlease make sure you
+access to it.It describes whether thehttps://docs.gopluslaHigh: This parameter iscontract would call
+functions of other
+contracts when primarybs.io/reference/toke
+n-security-apiresponse-highly relevant to
+malicious functions.
+Please make sure youmethods are executed.detail/contractsecurityaccess to it.It describes whether this
+cantract can self destruct.07/03/2022
+V1.1.11
+New FeatureDescriptionNew Locker supported:
+MudraSince the Mudra
+contract is unverified,
+we cannot display the
+locker details.New parameter:
+cannot_buyIt describes whether
+the token is allowed to
+be bought.Locationhttps://mudra.website/https://docs.gopluslabs
+.io/reference/tokensecurity-api-responsedetail/trading-securityImportanceLowMedium06/24/2022
+V1.1.10
+New FeatureDescriptionNew Chain supported:
+CronosChain ID: 25; Dex
+supported:
+MMFinance, VVS
+Finance.LocationImportancehttps://docs.gopluslabs
+.io/reference/quick-startHigh06/08/2022
+V1.1.9
+New Feature
+Algorithm optimization:
+is_blacklistedDescription
+Optimized blacklistOptimized honeypot
+detection algorithm.New Chain supported:
+HarmonyChain ID: 1666600000;
+Dex supported:
+SushiSwapV2New Locker supported:
+DeepLockDeepLock locker is
+supported.V1.1.8Importance
+Lowfunction detection
+algorithm.Algorithm optimization:
+is_honeypot05/28/2022LocationLowhttps://docs.goplusla
+bs.io/reference/quick
+-starthttps://deeplock.io/sa
+feHighLowNew FeatureDescriptionLocationImportancehttps://docs.gopluslabs
+.io/reference/tokensecurity-api-responsedetail/contract-securityHigh. This parameter
+highly relevant to
+malicious functions.
+Please make sure yo
+have access to it.LocationImportancehttps://www.pinksale.fi
+nance/LowIt describes whetherNew parameter:
+hidden_ownerthe contract has hidden
+owners. For contract
+with a hidden owner,
+developer can still
+manipulate the contract
+even if the ownership
+has been abandoned.05/18/2022
+V1.1.7
+New FeatureDescripionNew locker supported:
+PinkLockV2Pinksale locker V2 is
+supported05/13/2022
+V1.1.6New FeatureDescriptionLocationImportancethe contract has
+trading-cool-down
+mechanism which can
+limit the minimum time
+between two
+transactions.https://docs.gopluslabs
+.io/reference/tokensecurity-api-responsedetail/trading-securityMediumIt describes whether
+the contract has other
+potential risks.https://docs.gopluslabs
+.io/reference/tokensecurity-api-responsedetail/info-securityHigh. This parameter
+highly relevant to
+malicious functions.
+Please make sure yo
+have access to it.It describes whether
+the contract has other
+things investors needhttps://docs.gopluslabs
+.io/reference/tokensecurity-api-response-Lowto know.detail/info-securityIt describes whetherNew parameter:
+trading_cooldownNew parameter:
+other_potential_risksNew parameter: noteNew locker supported:
+Team FinanceTeam Finance locker is
+supportedhttps://www.team.finan
+ce/lockupsMedium04/27/2022
+V1.1.5
+New FeatureDescriptionLocationImportanceNew Chain supported:
+OECChain ID: 66Dex
+supported:
+CherrySwap, Jswaphttps://docs.gopluslabs
+.io/reference/quick-startHighNew locker supported:
+Token toolToken tool locker is
+supportedhttps://tokentool.app/MediumNew FeatureDescriptionLocationImportanceNew locker supported:
+DexSaleDexSale locker is
+supportedhttps://dxsale.app/Medium04/15/2022
+V1.1.404/10/2022
+V1.1.3
+New FeatureDescriptionLocationImportanceNew Dex supported:
+FstSwapFstSwap liquidity pair
+is supported on BSC​https://fstswap.exchange
+​MediumNew Chain supported:
+FantomChain ID: 250Dex
+supported:
+SpookySwaphttps://docs.gopluslabs
+.io/reference/quick-startHighNew FeatureDescriptionLocationImportanceAlgorithm optimization:
+is_honeypotOptimized honeypot
+detection algorithm04/02/2022
+V1.1.2Low03/28/2022
+V1.1.1
+New FeatureDescriptionLocationImportanceNew parameter:
+cannot_sell_allIt describes whether
+the contract has the
+function restricting
+token holder selling all
+the token.https://docs.gopluslabs
+.io/reference/tokensecurity-api-responsedetail/trading-securityMediumNew FeatureDescriptionLocationImportanceNew function: Access
+TokenAccess token would
+give you more frequent
+and stable accesshttps://docs.gopluslabs
+.io/reference/accesstoken03/23/2022
+V1.1.0High02/17/2022
+V1.0.1
+New FeatureNew parameter:
+is_anti_whaleDescription
+It describes whether
+the contract has the
+function to limit the
+maximum amount of
+transactions or the
+maximum amount of
+coins held.Locationhttps://docs.gopluslabs
+.io/reference/tokensecurity-api-responsedetail/trading-securityImportanceHighMalicious Address API Response Detail
+Free, timely and comprehensive malicious address library.GEThttps://api.gopluslabs.io/api/v1/address_security/{address}?chain_id=Parameters
+No parametersResponsesMethod: GET
+URL: https://api.gopluslabs.io/api/v1/address_security/{address}?chain_id=
+PATH PARAM
+ParametersTypeRequiredaddressesStringTrueFORM PARAMDescription
+Address needs to be
+detectedParametersTypeRequiredDescription
+The chain_id of thechain_idStringTrueblockchain.
+"1" means Ethereum;
+"10" means Optimism;
+“25” means Cronos;
+"56" means BSC;
+“66” means OKC;
+"100" means Gnosis;
+"128" means HECO;
+"137" means Polygon;
+"250" means Fantom;
+"321" means KCC;
+"324" means zkSync Era;
+"10001" means ETHW;
+"201022" means FON;
+"42161" means Arbitrum;
+"43114" means Avalanche;
+"59140" means Linea;
+"1666600000" means
+Harmony;
+"tron" means Tron.Request Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Notice: If only the address is sent to the API and not the chain id, the "contract_address" will not be returned
+( This is because there are cases where the same address is a contract in one public chain but not in other
+public chains.)Response ParametersSecurity itemsParameterDescriptionNoticeIt describes the data
+Data Sourcedata_sourcesource for this address
+information.​For example：
+GoPlus/SlowMistAddresses Related to
+Honeypothoneypot_related_addr
+essIt describes whether
+this address is related
+to honeypot tokens or
+has created scam
+tokens.
+"1" means true;
+"0" means false.Addresses related to
+honeypot mean the
+creators or owners of
+the honeypot tokens.
+This is a dangerous
+address if the address
+is ralated to honeypot
+tokens.It describes whether
+this address has
+Phishing Activitiesphishing_activitiesimplemented phishing
+activities.​"1" means true;
+"0" means false.
+It describes whetherBlack Mail Activitiesblackmail_activitiesthis address has
+implemented blackmail
+activities.​"1" means true;
+"0" means false.Stealing Attackstealing_attackIt describes whether
+this address has
+implemented stealing
+attacks.​"1" means true;
+"0" means false.Fake KYCfake_kycIt describes whether
+this address is
+involved in fake KYC.​"1" means true;
+"0" means false.Malicious Miningmalicious_mining_actiIt describes whether
+this address is
+involved in malicious
+mining activities.​Activitiesvities"1" means true;
+"0" means false.
+It describes whetherDarkweb Transactionsdarkweb_transactionsthis address is
+involved in darkweb
+transactions.​"1" means true;
+"0" means false.
+It describes whether
+this address is
+Cybercrimecybercrimeinvolved in cybercrime.​"1" means true;
+"0" means false.
+It describes whether
+this address is
+Money Launderingmoney_launderinginvolved in money
+laundering.​"1" means true;
+"0" means false.
+It describes whether
+this address is
+Financial Crimefinancial_crimeinvolved in financial
+crime.​"1" means true;
+"0" means false.Suspected Malicious
+Addressblacklist_doubtIt describes whether
+this address is
+suspected of malicious
+behavior.​"1" means true;
+"0" means false.It describes whetherIf only the address is
+sent to the API and no
+the chain id, the
+"contract_address" w
+not be returned (This
+because there are
+cases where the sam
+address is a contract
+one public chain but
+not in other public
+chains.) DeterminingContract Addresscontract_addressthis address is athe contract address icontract address.
+"1" means true;
+"0" means false.achieved by calling a
+third-party blockchain
+browser interface.
+Since it takes time for
+the browser interface
+return, the field may b
+empty on the first
+request.
+Solution: the second
+call around 5s can
+return whether the
+address is the value o
+the contract normally.Coin Mixer addressmixerIt describes whetherInteracting with cointhis address is coinmixer may result inmixer address.your address being"1" means true;added to the risk list o"0" means false.third-party institutionsIt describes whether
+this address is coin
+Sanctioned Addresssanctionedsanctioned address.​"1" means true;
+"0" means false.
+This parameter
+Number of maliciousnumber_of_malicious_contractscontracts_createdCode
+CodeAPI License Agreement
+API License Agreementdescribes how many
+malicious contracts
+have been created by
+this address.​Change Logs
+12/27/2022
+V1.0.2
+New FeatureDescriptionLocationNew parameter:
+number_of_malicious_
+contracts_createdThis parameter
+describes how many
+malicious contracts
+have been created by​
+https://docs.gopluslabs
+.io/reference/maliciousaddress-api-response-this address.detail​DescriptionLocationImportanceMedium11/25/2022
+V1.0.1
+New FeatureImportance​
+New parameter: mixerNew parameter:
+sanctionedIt describes whether
+this address is a coinhttps://docs.gopluslabs
+.io/reference/malicious-mixer address.address-api-responsedetail​It describes whether
+this address is
+sanctioned address.​
+https://docs.gopluslabs
+.io/reference/maliciousaddress-api-responsedetail​HighHighApproval Security API v1GEThttps://api.gopluslabs.io/api/v1/approval_security/{chain_id}?contract_addresses=Parameters
+No parametersResponsesMethod: GET
+URL: https://api.gopluslabs.io/api/v1/approval_security/{chain_id}?contract_addresses=
+PATH PARAM
+ParametersTypeRequiredDescription
+Chain id, (ETH: 1, BSC: 56chain_idStringOKC: 66, Heco: 128,
+Polygon: 137, Fantom:250,TrueArbitrum: 42161, Avalanche
+43114)
+FORM PARAM
+ParametersTypeRequiredDescriptioncontract_addressesStringTrueContract needs to be
+detectedRequest Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Response ParametersSecurity itemsParameterDescriptionNoticeIt describes the
+Contract NameContract TagContract or notcontract_nametagis_contractapproved contract
+name.
+It describes which
+dapp uses the contract.
+Example:"tag":
+"Compound"
+It describes whether
+the address is a
+contract.
+"1" means true;​​​"0" means false.Creator Addresscreator_addressIt describes the creator
+address of the contract.It describes the
+deployed time of the
+contract.
+Deployed Timedeployed_timeThe value is
+presented as a
+timestamp.
+Example:
+"deployed_time":
+1626578345Open SourceTrust ListWhen the address is
+not a contract
+("is_contract"=0), it w
+return "null".When the address is
+not a contract
+("is_contract"=0), it w
+return "null".is_open_sourceIt describes whether
+this contract is open
+source.
+"1" means true;
+"0" means false.When the address is
+not a contract
+("is_contract"=0), it w
+return "null".trust_listIt describes whether
+the address is a
+famous and trustworthy
+one.
+"1" means true;
+"0" means that we
+have not included this
+address in the trusted
+list;Return "0" does not
+mean the address is
+not trustworthy. Mayb
+we just haven't
+included it yet.It describes whether
+the address is asuspected malicious
+Suspected Malicious
+Contractdoubt_listcontract.
+"1" means true;
+"0" means that we
+have not foundReturn "0" does not
+mean it is safe. Mayb
+we just haven't found
+its malicious behaviomalicious behavior of
+this address.
+It describes specific
+malicious behaviors.
+"honeypot_related_a
+ddress" means that
+the address is related
+to honeypot tokens or
+has created scam
+tokens.
+"phishing_activities"
+means that this
+address has
+implemented phishing
+activities.
+"blackmail_activities"
+means that this
+address has
+implemented blackmail
+activities.
+"stealing_attack"
+means that this
+address hasSpecific Malicious
+Behaviormalicious_behavior:[]implemented stealing
+attacks.
+"fake_kyc" means
+that this address is
+involved in fake KYC.
+"malicious_mining_a
+ctivities" means that
+this address is
+involved in malicious
+mining activities.
+"darkweb_transactio
+ns" means that this
+address is involved in
+darkweb transactions.
+"cybercrime" means
+that this address is
+involved in cybercrime.
+"money_laundering"
+means that this
+address is involved inReturning an empty
+array means that no
+malicious behavior
+was found at that
+address.money laundering.
+"financial_crime"
+means that this
+address is involved in
+financial crime.
+“blacklist_doubt”
+means that the address
+is suspected of
+malicious behavior and
+is therefore blacklisted.Sample Response
+{
+"code": 1,
+"message": "ok",
+"result": {
+"contract_name": "TransparentUpgradeableProxy",
+"tag": "ALPACA",
+"is_contract": 1,
+"creator_address": "0xc44f82b07ab3e691f826951a6e335e1bc1bb0b51",
+"deployed_time": 1641541530,
+"is_open_source": 1,
+"trust_list": 1,
+"doubt_list": 0,
+"malicious_behavior":["phishing_activities"]
+}
+}Code
+CodeAPI License Agreement
+API License AgreementChange Logs
+09/23/2022
+V1.0.9
+New FeatureDescriptionLocationNew parameter:
+malicious_behavior:[]It describes the
+specific malicious
+behaviors of thehttps://docs.gopluslabs.i
+o/reference/approval-address.security-api-v1Importance
+Medium: This feature is
+a supplement to the
+original one. We
+recommend you access
+it.Approval Management API (Approval Security
+API v2)
+Differences between Version1 and Version2
+Different Usage
+Version1 mainly supports inputting approved contracts and detects the security of approved contracts.
+Version2 mainly supports inputting a EOA, viewing the contracts approved by the address and the
+information of the approved contracts (basic information + risk detection) .
+Different Application Scenarios
+Version1 is more for the exchange, blockscan such as instant approval scenario. Version2 is more for the
+wallet, users can view the approval history and check the security of approved contracts.Token Approval Security
+Token Approval Security APIERC721 NFT Approval Security API
+ERC721 NFT Approval Security APIERC1155 NFT Approval Security API
+ERC1155 NFT Approval Security APIError Code
+CodeAPI License AgreementAPI License AgreementToken Approval Security API
+API: https://api.gopluslabs.io/api/v2/token_approval_security/56?addresses=
+METHOD: GET
+PATH PARAM:
+Parametersrequireddescriptionchain_idTrueChain id, (eth:1, bsc:56 )FORM PARAM
+ParametersRequiredDescriptionaddressesTrueEOA addressEXAMPLE:
+https://api.gopluslabs.io/api/v2/token_approval_security/56?
+addresses=0xd018e2b543a2669410537f96293590138cacedf3
+Request Headers:
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained through Get
+Access TokenResponse ：Security itemsParameterDescriptionNoticeIt describes the token
+Token Contracttoken_addresscontract address which
+is approved.
+The chain_id of the
+blockchain.
+"1" means Ethereum;
+"56" means BSC.Chainchain_idToken Nametoken_nametoken_nameToken Symboltoken_symboltoken_symbolToken PrecisiondecimalsToken HoldingsbalanceIt describes the token
+precision.
+It describes the tokenThe type of returnbalance of the address.value is string.
+Un-open-sourcedOpen Sourceis_open_sourceIt describes whether
+this contract is opencontracts may hide
+various unknown
+mechanisms and aresource.
+"1" means true;
+"0" means false.extremely risky.
+When the contract is
+not open source, we
+will not be able to
+detect other risk itemsMalicious Tokenmalicious_addressIt describes whether
+this token has
+performed malicious
+behaviors.
+"1" means true;
+"0" means false.It describes specific
+malicious behaviors.
+"honeypot_related_a
+ddress" means that
+the address is related
+to honeypot tokens orMalicious behaviors
+include random
+additions, blacklist
+abuse, falsified
+transactions, and othe
+high-risk behaviors.
+Interacting with token
+flagged as Malicious
+may contain a high
+level of risk.has created scam
+tokens.
+"phishing_activities"
+means that this
+address has
+implemented phishing
+activities.
+"blackmail_activities"
+means that this
+address has
+implemented blackmail
+activities.
+"stealing_attack"
+means that this
+address has
+implemented stealingSpecific Malicious
+Behaviormalicious_behavior:[]attacks.
+"fake_kyc" meansReturning an emptythat this address is
+involved in fake KYC.array means that no
+malicious behavior"malicious_mining_awas found at thatctivities" means that
+this address isaddress.involved in malicious
+mining activities.
+"darkweb_transactio
+ns" means that this
+address is involved in
+darkweb transactions.
+"cybercrime" means
+that this address is
+involved in cybercrime.
+"money_laundering"
+means that this
+address is involved in
+money laundering.
+"financial_crime"
+means that this
+address is involved in
+financial crime.
+“blacklist_doubt”
+means that the address
+is suspected of
+malicious behavior and
+is therefore blacklisted
+Approved Contractapproved_contractIt describes the
+approved contract.It describes when is
+the first time owner
+Initial Approval Timeinitial_approval_timeapproved allowance to
+the spender.
+The value is​timestamp.Initial Approval Hashinitial_approval_hashIt describes the initial
+approved allowance​hash of the contract.
+It describes the latest
+allowance changeing
+Latest Approved Timeapproved_timetime of the contract.
+The value is​timestamp.
+It describes the latest
+Latest Approved Hashhashallowance changeing
+hash of the contract.
+It describes theApproved Amountapproved_amountapproved amount of
+the contract.The type of return
+value is string.It describes the
+approved contract info.
+The info includes:
+(1) "contract_name"
+describes the
+approved contract
+name.
+(2) "tag" describes
+which dApp uses the
+contract.
+Example: "tag":
+"Compound".
+(3) "is_contract"
+describes whether the
+address is a contract.
+"1" means true;
+"0" means false.
+(4) "is_open_source"
+describes whether this
+contract is open
+"address_info":
+{"contract_name": ,
+"tag": ,
+"is_contract": ,
+"is_open_source": ,source.
+"1" means true;
+"0" means false.
+(5) "trust_list"
+describes whether theWhen the address is
+not a contract
+("is_contract"=0),
+"contract_name" ,
+"creator_address",
+"deployed_time" willAddress Info"trust_list": ,address is a famous"doubt_list": ,
+"malicious_behavior":and trustworthy one.
+"1" means true;[],
+"creator_address": "",
+"deployed_time": ,}"0" means that we
+have not included this
+address in the trusted
+list.
+(6) "doubt_list"
+describes whether the
+address is a suspected
+malicious contract.
+"1" means true;
+"0" means that we
+have not found
+malicious behavior of
+this address.
+(7)"malicious_behavior
+" describes specific
+malicious behaviors.
+(8) "creator_address"
+describes the creator
+address of the contract.
+(9) "deployed_time"
+describes the deployed
+time of the contract.
+The value is
+presented as a
+timestamp.Response Example:return "null".
+When no malicious
+behavior was found a
+that address,
+"malicious_behavior"
+will return an empty
+array.{
+"code": 1,
+"message": "ok",
+"result": [
+{
+"token_address": "0x55d398326f99059ff775485246999027b3197955",
+"chain_id": "56",
+"token_name": "Tether USD",
+"token_symbol": "USDT",
+"decimals": 18,
+"balance": "244.312991926161305209",
+"is_open_source": 1,
+"malicious_address": 0,
+"malicious_behavior":["phishing_activities"],
+"approved_list": [
+{
+"approved_contract": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+"approved_amount": "Unlimited",
+"approved_time": 1619498864,
+"hash": "0x9568d7fa18d3a23562dc61ff0a0457b177fea1e61b6661aa7729ee4bdf62c0b9",
+"address_info": {
+"contract_name": "PancakeRouter",
+"tag": "Pancakeswap",
+"creator_address": "0xdb6f5fb9311ae8885620ee893887c3d85c8293d6",
+"is_contract": 1,
+"doubt_list": 0,
+"malicious_behavior":[],
+"deployed_time": 1619165545,
+"trust_list": 1,
+"is_open_source": 1
+}
+}
+]
+}
+]
+}ERC721 NFT Approval Security API
+API: http://api.gopluslabs.io/api/v2/nft721_approval_security/1?addresses=
+METHOD: GET
+PATH PARAM:
+Parametersrequireddescriptionchain_idTrueChain id, (eth:1, bsc:56 )FORM PARAM
+ParametersRequiredDescriptionaddressesTrueEOA addressEXAMPLE:
+http://api.gopluslabs.io/api/v2/nft721_approval_security/1?
+addresses=0xd95dbdab08a9fed2d71ac9c3028aac40905d8cf3
+Request Headers:
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained through
+Get Access TokenResponse ：Security itemsParameterDescriptionNoticeIt describes the NFT
+Token Contractnft_addresscontract address which
+is approved.
+The chain_id of the
+blockchain.
+"1" means Ethereum;
+"56" means BSC.Chainchain_idNFT Namenft_nametoken_nameNFT Symbolnft_symboltoken_symbol
+Un-open-sourcedOpen Sourceis_open_sourceIt describes whether
+this contract is opencontracts may hide
+various unknown
+mechanisms and aresource.
+"1" means true;
+"0" means false.extremely risky.
+When the contract is
+not open source, we
+will not be able to
+detect other risk itemsIt describes whether
+the NFT is verified.
+"1" means that the NFT
+The NFT verifiedMalicious NFTis_verifiedmalicious_addressis verified;
+"0" means that we did
+not find any information
+about whether the NFT
+is verified.It describes whether
+this token has
+performed malicious
+behaviors.
+"1" means true;
+"0" means false.It describes specific
+malicious behaviors.
+"honeypot_related_aMalicious behaviors
+include random
+additions, blacklist
+abuse, falsified
+transactions, and othe
+high-risk behaviors.
+Interacting with token
+flagged as Malicious
+may contain a high
+level of risk.ddress" means that
+the address is related
+to honeypot tokens or
+has created scam
+tokens.
+"phishing_activities"
+means that this
+address has
+implemented phishing
+activities.
+"blackmail_activities"
+means that this
+address has
+implemented blackmail
+activities.
+"stealing_attack"
+means that this
+address has
+implemented stealing
+attacks.Specific Malicious
+Behaviormalicious_behavior:[]"fake_kyc" meansReturning an emptythat this address is
+involved in fake KYC.array means that no"malicious_mining_awas found at thatctivities" means thataddress.this address is
+involved in malicious
+mining activities.
+"darkweb_transactio
+ns" means that this
+address is involved in
+darkweb transactions.
+"cybercrime" means
+that this address is
+involved in cybercrime.
+"money_laundering"
+means that this
+address is involved in
+money laundering.
+"financial_crime"
+means that this
+address is involved in
+financial crime.
+“blacklist_doubt”
+means that the address
+is suspected of
+malicious behavior and
+is therefore blacklistedmalicious behaviorApproved Contractapproved_contractIt describes the
+approved contract.
+It describes when is
+the first time ownerInitial Approval Timeinitial_approval_timeapproved allowance to
+the spender.​The value is
+timestamp.
+It describes the initial
+Initial Approval Hashinitial_approval_hashapproved allowance​hash of the contract.
+It describes the latest
+allowance changeing
+Latest Approved Timeapproved_timetime of the contract.​The value is
+timestamp.
+It describes the latest
+Latest Approved Hashhashallowance changeing
+hash of the contract.
+The type of return
+It describes the typeApprovedapproved.Type(Approved for all
+/Approved for single"1" means "approved
+for all";approved_for_allNFT)"0" means "approved
+for single NFT".The Token_id of
+Approved NFTapproved_token_idvalue is bool.Note:
+Only the ERC721
+NFTs have the two
+types of approved for
+all /approved for singl
+The ERC1155 NFTs
+have only one type approved for all.It describes the
+token_id of the
+approved NFT if theWhen the approved
+type is "approved for
+all"approved type is
+"approved for single".("approved_for_all"=1
+it will return "null".It describes the
+approved contract info.
+The info includes:
+(1) "contract_name"
+describes the
+approved contract
+name.
+(2) "tag" describes
+which dApp uses the
+contract.Example: "tag":
+"Compound".
+(3) "is_contract"
+describes whether the
+address is a contract.
+"1" means true;
+"0" means false.
+(4) "is_open_source"
+describes whether this
+contract is open
+"address_info":
+{"contract_name": ,
+"tag": ,
+"is_contract":
+,
+"is_open_source":
+,
+Address Info"trust_list": ,
+"doubt_list": ,
+"malicious_behavior":
+[],
+"creator_address": "",
+"deployed_time": ,}source.
+"1" means true;
+"0" means false.
+(5) "trust_list"
+describes whether the
+address is a famous
+and trustworthy one.
+"1" means true;
+"0" means that we
+have not included this
+address in the trusted
+list.
+(6) "doubt_list"
+describes whether the
+address is a suspected
+malicious contract.
+"1" means true;
+"0" means that we
+have not found
+malicious behavior of
+this address.
+(7)"malicious_behavior
+" describes specific
+malicious behaviors.
+(8) "creator_address"
+describes the creator
+address of the contract.
+(9) "deployed_time"
+describes the deployed
+time of the contract.
+The value is
+presented as a
+timestamp.Response Example:When the address is
+not a contract
+("is_contract"=0),
+"contract_name" ,
+"creator_address",
+"deployed_time" will
+return "null".
+When no malicious
+behavior was found a
+that address,
+"malicious_behavior"
+will return an empty
+array.{
+"code": 1,
+"message": "ok",
+"result": [
+{
+"nft_address": "0xb045248a632907df9565a5b8d4df4eaa0e81e7ca",
+"chain_id": "56",
+"nft_name": "WitchMagicBox721",
+"nft_symbol": "WitchMagicBox721",
+"is_open_source": 0,
+"is_verified": 1,
+"malicious_address": 0,
+"malicious_behavior":["phishing_activities"],
+"approved_list": [
+{
+"approved_contract": "0x1ccc54b5f38a758a1c922c3dbe374e2f41c45409",
+"approved_for_all": 1,
+"approved_token_id": null,
+"approved_time": 1641319315,
+"hash": "0x7134e533e4f0ebd4b0c14c8d0000f986a073d3b1fd84ccedf1c2fb89db743692",
+"address_info": {
+"contract_name": "NormalMarket",
+"tag": null,
+"creator_address": "0x615759d8519dc77f7b2a42a90a9512cd015197a7",
+"is_contract": 1,
+"doubt_list": 0,
+"malicious_behavior":[],
+"deployed_time": 1624961887,
+"trust_list": 0,
+"is_open_source": 1
+}
+}
+]
+},
+{
+"nft_address": "0x0000f22ffe0866ffb8834600dad9259cf4956853",
+"chain_id": "56",
+"nft_name": "BSC Name Service (.bnb)",
+"nft_symbol": "TD",
+"is_open_source": 1,
+"is_verified": 0,
+"malicious_address": 0,
+"malicious_behavior":[],
+"approved_list": [
+{
+"approved_contract": "0x1ccc54b5f38a758a1c922c3dbe374e2f41c45409",
+"approved_for_all": 1,
+"approved_token_id": null,
+"approved_time": 1628015932,
+"hash": "0x6149242cd0e44d7fae3663841cb872aedc3b6b0b26a98dbfb0553a44d73d93f5",
+"address_info": {"contract_name": "NormalMarket",
+"tag": null,
+"creator_address": "0x615759d8519dc77f7b2a42a90a9512cd015197a7",
+"is_contract": 1,
+"doubt_list": 0,
+"malicious_behavior":[],
+"deployed_time": 1624961887,
+"trust_list": 0,
+"is_open_source": 1
+}
+}
+]
+}
+]
+}ERC1155 NFT Approval Security API
+API: https://api.gopluslabs.io/api/v2/nft1155_approval_security/56?addresses=
+METHOD: GET
+PATH PARAM:
+Parametersrequireddescriptionchain_idTrueChain id, (eth:1, bsc:56 )FORM PARAM
+ParametersRequiredDescriptionaddressesTrueEOA addressEXAMPLE:
+https://api.gopluslabs.io/api/v2/nft1155_approval_security/56?
+addresses=0xb0dccbb9c4a65a94a41a0165aaea79c8b2fc54ce
+Request Headers:
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained through Get
+Access TokenResponse ：Security itemsParameterDescriptionNoticeIt describes the NFT
+Token Contractnft_addresscontract address which
+is approved.
+The chain_id of the
+blockchain.
+"1" means Ethereum;
+"56" means BSC.Chainchain_idNFT Namenft_nametoken_nameNFT Symbolnft_symboltoken_symbol
+Un-open-sourcedOpen Sourceis_open_sourceIt describes whether
+this contract is opencontracts may hide
+various unknown
+mechanisms and aresource.
+"1" means true;
+"0" means false.extremely risky.
+When the contract is
+not open source, we
+will not be able to
+detect other risk itemsIt describes whether
+the NFT is verified.
+"1" means that the NFT
+The NFT verifiedMalicious NFTis_verifiedmalicious_addressis verified;
+"0" means that we did
+not find any information
+about whether the NFT
+is verified.It describes whether
+this token has
+performed malicious
+behaviors.
+"1" means true;
+"0" means false.It describes specific
+malicious behaviors.
+"honeypot_related_aMalicious behaviors
+include random
+additions, blacklist
+abuse, falsified
+transactions, and othe
+high-risk behaviors.
+Interacting with token
+flagged as Malicious
+may contain a high
+level of risk.ddress" means that
+the address is related
+to honeypot tokens or
+has created scam
+tokens.
+"phishing_activities"
+means that this
+address has
+implemented phishing
+activities.
+"blackmail_activities"
+means that this
+address has
+implemented blackmail
+activities.
+"stealing_attack"
+means that this
+address has
+implemented stealing
+attacks.Specific Malicious
+Behaviormalicious_behavior:[]"fake_kyc" meansReturning an emptythat this address is
+involved in fake KYC.array means that no"malicious_mining_awas found at thatctivities" means thataddress.this address is
+involved in malicious
+mining activities.
+"darkweb_transactio
+ns" means that this
+address is involved in
+darkweb transactions.
+"cybercrime" means
+that this address is
+involved in cybercrime.
+"money_laundering"
+means that this
+address is involved in
+money laundering.
+"financial_crime"
+means that this
+address is involved in
+financial crime.
+“blacklist_doubt”
+means that the address
+is suspected of
+malicious behavior and
+is therefore blacklistedmalicious behaviorApproved Contractapproved_contractIt describes the
+approved contract.
+It describes when is
+the first time ownerInitial Approval Timeinitial_approval_timeapproved allowance to
+the spender.​The value is
+timestamp.
+It describes the initial
+Initial Approval Hashinitial_approval_hashapproved allowance​hash of the contract.Latest Approved Timeapproved_timeIt describes the latest
+allowance changeing
+time of the contract.​The value i
+It describes the latest
+Latest Approved Hashhashallowance changeing
+hash of the contract.
+It describes the
+approved contract info.
+The info includes:
+(1) "contract_name"
+describes the
+approved contract
+name.
+(2) "tag" describes
+which dApp uses the
+contract.
+Example: "tag":
+"Compound".
+(3) "is_contract"
+describes whether the
+address is a contract.
+"1" means true;
+"0" means false.
+(4) "is_open_source"
+describes whether this"address_info":
+{"contract_name": ,
+"tag": ,
+"is_contract": ,
+"is_open_source": ,contract is open
+source.
+"1" means true;
+"0" means false.
+(5) "trust_list"
+describes whether theWhen the address is
+not a contract
+("is_contract"=0),
+"contract_name" ,
+"creator_address",
+"deployed_time" willAddress Info"trust_list": ,
+"doubt_list":
+,
+"malicious_behavior":
+[],
+"creator_address": "",
+"deployed_time": ,}address is a famous
+"1" means
+true; one.
+and
+trustworthy
+"0" means that wereturn "null".have not included this
+address in the trustedbehavior was found a
+that address,
+"malicious_behavior"list.
+(6) "doubt_list"
+describes whether the
+address is a suspected
+malicious contract.
+"1" means true;
+"0" means that we
+have not found
+malicious behavior of
+this address.
+(7)"malicious_behavior
+" describes specific
+malicious behaviors.
+(8) "creator_address"
+describes the creator
+address of the contract.
+(9) "deployed_time"
+describes the deployed
+time of the contract.
+The value is
+presented as a
+timestamp.Response Example:When no maliciouswill return an empty
+array.{
+"code": 1,
+"message": "ok",
+"result": [
+{
+"nft_address": "0x1c226595ff8fd09e9ea2f2e779338afc95d17c2e",
+"chain_id": "1",
+"nft_name": "xNFT1155",
+"nft_symbol": "xNFT1155",
+"is_open_source": 0,
+"is_verified": 0,
+"malicious_address": 0,
+"malicious_behavior":["phishing_activities"],
+"approved_list": [
+{
+"approved_contract": "0xa1f4ea3d0b36565cc11fe03fd6f86045e6593ca1",
+"approved_time": 1631221666,
+"hash": "0xd617f0a3019d58e8a97a03855050e019e8eac71af1f567c5b06733f3cf1fa708",
+"address_info": {
+"contract_name": null,
+"tag": null,
+"creator_address": "0x615759d8519dc77f7b2a42a90a9512cd015197a7",
+"is_contract": 1,
+"doubt_list": 0,
+"malicious_behavior":[],
+"deployed_time": 1631015480,
+"trust_list": 0,
+"is_open_source": 0
+}
+}
+]
+},
+{
+"nft_address": "0xd07dc4262bcdbf85190c01c996b4c06a461d2430",
+"chain_id": "1",
+"nft_name": "Rarible",
+"nft_symbol": "RARI",
+"is_open_source": 1,
+"is_verified": 1,
+"malicious_address": 0,
+"malicious_behavior":[],
+"approved_list": [
+{
+"approved_contract": "0x1e0049783f008a0085193e00003d00cd54003c71",
+"approved_time": 1656622732,
+"hash": "0xc59445405a9e2509153a1913adc75579c21882e73e3fb5484dba3881f88bcc43",
+"address_info": {
+"contract_name": null,
+"tag": null,
+"creator_address": "0x939c8d89ebc11fa45e576215e2353673ad0ba18a",
+"is_contract": 1,"doubt_list": 0,
+"malicious_behavior":[],
+"deployed_time": 1654994918,
+"trust_list": 0,
+"is_open_source": 0
+}
+}
+]
+}
+]
+}Change Logs
+01/12/2023
+V1.0.5
+New FeatureNew parameter:
+initial_approval_hashDescriptionIt describes the initial
+approved allowance
+hash of the contract.Location
+​
+https://docs.gopluslabs
+.io/reference/approvalmanagement-apiapproval-security-apiv2​Importance
+Medium: This feature
+a supplement to the
+original one. We
+recommend you
+access it.12/30/2022
+V1.0.4
+New FeatureDescriptionLocation
+​New parameter:
+initial_approval_timeIt describes when is
+the first time ownerhttps://docs.gopluslabs
+.io/reference/approval-approved allowance to
+the spender.management-apiapproval-security-apiv2​Importance
+Medium: This feature
+a supplement to the
+original one. We
+recommend you
+access it.09/23/2022
+V1.0.3
+New FeatureDescriptionNew parameter:
+malicious_behavior:[]It describes the
+specific malicious
+behaviors of the
+address.LocationImportancehttps://docs.gopluslabs.i
+o/reference/approvalmanagement-apiapproval-security-api-v2Medium: This feature is
+a supplement to the
+original one. We
+recommend you access
+it.Signature Data Decode API
+Method: POST
+URL: http://api.gopluslabs.io/api/v1/abi/input_decode
+Request Body
+namerequireddescription
+Chain id, (ETH: 1, Cronos:25,
+BSC: 56, Heco: 128, Polygon:chain_idTruesigner137, Fantom:250, KCC: 321,
+Arbitrum: 42161, Avalanche:
+43114)
+Carrying the signer and contrac
+address will help to decodeFalsemore information.
+Carrying the signer and contrac
+contract_addressFalseaddress will help to decode
+more information.dataTrueTransaction inputExample:
+{
+"chain_id": "56",
+"signer": "0xA8dfd1f310C6e3DE99DaA81096fd0dA5DA5e4399",
+"contract_address": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+"data": "0x38ed1739000000000000000000000000000000000000000000000000016345785d8a0000000000000
+}Request Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained through Get
+Access TokenContent-TypeStringTrueapplication/jsonResponseSecurity itemsParameterDescriptionNoticeIt describes the
+Method NameParameter TypeParameter Namemethodtypenamemethod name in ABI,
+for example "transfer".
+It describes the
+parameter type in ABI,
+for example "address",
+"uint256", "bool".
+It describes the
+parameter name in
+ABI, for example
+"_from", "_to",
+"_value".Input DatainputIt describes the input
+data in ABI.
+It describes the info
+about the address as a
+parameter.
+The info includes: (1)
+"is_contract" describes
+whether the address is
+a contract. "1" means
+true; "0" means false.Address Info"address_info": {
+"is_contract":,
+"contract_name": ,
+"standard": ,"symbol": ,
+"name":
+,"malicious_address": ,
+}(2) "contract_name"
+describes the contract
+name if the address is
+a contract.
+(3) "standard"
+describes the standard
+type of the
+contract.Example:"erc
+20".
+(4) "symbol" describes
+the token symbol if the
+address is an ERC20
+contract.
+(5) "name" describes
+the token name if the
+address is an ERC20
+contract.
+(6)
+"malicious_address"
+describes whether the
+address is aWhen the address is
+not a contract
+("is_contract"=0),
+"contract_name",
+"standard", "symbol",
+"name" will return
+"null".
+When the address is
+contract but not an
+erc20 contract,
+"standard", "symbol",
+"name" will return
+"null".suspected malicious
+contract.
+"1" means true;
+"0" means that we
+have not found
+malicious behavior of
+this address.
+The name of the
+Contract Namecontract_namecontract that the user
+is interacting with.Contract Descriptioncontract_descriptionDescription of the
+contract.
+It tells if contract thatIs Malicious Contractmalicious_contractthe user is interacting
+with is malicious
+contract.Signature Detailsignature_detailIt explain the function
+of the method
+Even non-malicious,Is Risky SignatureRisk DetailResponse Examplerisky_signatureriskIt tells if the transactioncommonly used, wellthat users are signingknown contracts cancontains risk.be highly risky if not
+used properly.It explains why the
+transaction that users
+are signing contains
+risk.Even non-malicious,
+commonly used, well
+known contracts can
+be highly risky if not
+used properly.{
+"code": 1,
+"message": "ok",
+"result": {
+"method": "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+"risk": "The ultimate beneficiary of this transaction is not the your address
+"params": [
+{
+"type": "uint256",
+"name": "amountIn",
+"input": "100000000000000000",
+"struct": null,
+"tuple": null,
+"address_info": null
+},
+{
+"type": "uint256",
+"name": "amountOutMin",
+"input": "13632900000000000",
+"struct": null,
+"tuple": null,
+"address_info": null
+},
+{
+"type": "address[]",
+"name": "path",
+"input": [
+{
+"type": "address",
+"name": null,
+"input": "0x55d398326f99059ff775485246999027b3
+"struct": null,
+"tuple": null,
+"address_info": {
+"standard": "ERC20",
+"symbol": "USDT",
+"name": "Tether USD",
+"contract_name": "Tether USD",
+"malicious_address": 1,
+"is_contract": 1
+}
+},
+{
+"type": "address",
+"name": null,
+"input": "0xccb52799b9c843d15c8018e082927f0ba5
+"struct": null,
+"tuple": null,
+"address_info": {
+"standard": null,
+"symbol": null,
+"name": null,"contract_name": null,
+"malicious_address": 0,
+"is_contract": 0
+}
+}
+],
+"struct": null,
+"tuple": null,
+"address_info": null
+},
+{
+"type": "address",
+"name": "to",
+"input": "0xa8dfd1f310c6e3de99daa81096fd0da5da5e4398",
+"struct": null,
+"tuple": null,
+"address_info": {
+"standard": null,
+"symbol": null,
+"name": null,
+"contract_name": null,
+"malicious_address": 0,
+"is_contract": 0
+}
+},
+{
+"type": "uint256",
+"name": "deadline",
+"input": "1682097634",
+"struct": null,
+"tuple": null,
+"address_info": null
+}
+],
+"contract_name": "PancakeSwap",
+"contract_description": "PancakeSwap Router",
+"malicious_contract": null,
+"signature_detail": "Swap token for another token on PancakeSwap.",
+"risky_signature": 1
+}
+}Error Code
+CodeAPI License AgreementAPI License AgreementGhange Logs
+12/20/2022
+V1.0.7
+New FeatureAlgorithm optimization:
+Decode of Array and
+StructDescriptionLocationhttps://docs.gopluslabs.i
+o/reference/signaturedata-decode-apiImportance
+Medium: This feature is
+a supplement to the
+original one. We
+recommend you access
+it.NFT Security APIGEThttps://api.gopluslabs.io/api/v1/nft_security/{chain_id}?contract_addresses=Parameters
+No parametersResponsesMethod: GET
+URL: https://api.gopluslabs.io/api/v1/nft_security/{chain_id}?contract_addresses=
+PATH PARAM
+ParametersTypeRequiredDescription
+Chain id, (eth: 1, bsc: 56,chain_idStringTruePolygon: 137, Avalanche:
+43114)FORM PARAM
+ParametersTypeRequiredDescriptioncontract_addr
+essesStringTrueNFT contract addressRequest Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Response ParametersSecurity itemsParameterNFT Namenft_nameNFT Symbolnft_symbolDescriptionIt describes the
+introduction of the NFT.
+NFT DescriptionNFT ERCnft_descriptionnft_ercReturn “null” means there
+is no description of the
+NFT.
+It describes the ERC
+protocol of the NFT.
+Example: "nft_erc":
+"erc721"
+It describes the creator
+address of the NFT.Creator Addresscreator_addressExample:
+"creator_address":
+"0x1ee0af784b96bb55ec
+e98c9b15675726b0da1b
+6b";
+Return “null” means that
+we didn't find the creator
+address.
+It describes the number ofThe number of
+blocks createdblocks created for the
+NFT.
+create_block_numberReturn “null” means that
+we didn't find the number
+of blocks created for the
+NFT.
+It describes the website
+url of the NFT.Website URLwebsite_urlReturn “null” means there
+is no website url or didn't
+find the website url.
+It describes the discord
+url of the NFT.Discord URLdiscord_urlReturn “null” means there
+is no discord url or didn't
+find the discord url.
+It describes the github urlNoticeGithub URLgithub_urlof the NFT.
+Return “null” means there
+is no github url or didn't
+find the github url.
+It describes the twitter url
+of the NFT.Twitter URLtwitter_urlReturn “null” means there
+is no twitter url or didn't
+find the twitter url.
+It describes the medium
+url of the NFT.Medium URLmedium_urlReturn “null” means there
+is no medium url or didn't
+find the medium url.
+It describes the telegram
+url of the NFT.Telegram URLtelegram_urlReturn “null” means there
+is no telegram url or didn't
+find the telegram url.NFT Itemsnft_itemsIt describes the numbers
+of the NFT.NFT Holdersnft_owner_numberIt describes the holders of
+the NFT.The average
+price in 24haverage_price_24hIt describes the average
+price of the NFT in 24h.The lowest price
+in 24hlowest_price_24hIt describes the lowest
+price of the NFT in 24h.The sales in 24hsales_24hIt describes the sales of
+the NFT in 24h.The trading
+volume in 24htraded_volume_24hIt describes the trading
+volume of the NFT in
+24h.The total volumetotal_volumeIt describes the total
+volume of the NFT.The highest pricehighest_priceIt describes the highest
+price of the NFT.
+It describes whether the
+NFT is verified.
+"1" means that the NFT isThe NFT isnft_verifiedverifiedverified;
+"0" means that we did not
+find any information
+about whether the NFT is
+verified.
+It describes the info of
+other NFTs with duplicate"same_nfts":
+[{"nft_name":"Landbox
+Club","nft_symbol":"La
+nd","nft_address":
+"0x744aF9cBb7606B
+B040f6FBf1c0a0B0dc
+BA6385E5","nft_owne
+The info of
+duplicate name
+NFTsr_number":
+"1111","create_block_
+number": "1111"},
+{"nft_name":"Landbox
+Club",
+"nft_symbol":"Land","n
+ft_address":
+"0x744aF9cBb7606B
+B040f6FBf1c0a0B0dc
+BA6385E5","nft_owne
+r_number": "1111"}]name and symbol.
+The info includes:
+(1) "nft_name" describes
+the name of the NFT;
+(2) "nft_symbol"
+describes the symbol of
+the NFT;
+(3) “nft_address”
+describes the address of
+the NFTs;
+(4) “nft_owner_number”
+describes the holders of
+the NFT;
+(5)
+“create_block_number”
+describes the number of
+blocks created for the
+NFT.
+Return "null" means no
+NFTs with duplicate
+name and symbol.Trust Listtrust_listIt describes whether the
+NFT is a famous and
+trustworthy one.
+"1" means true;
+Return "null" means no
+result.It describes whether this
+Malicious NFTmalicious_nft_contractNFT has performed
+malicious behaviors.
+"1" means true;
+"0" means false.(1) Only "trust_list": "1"
+means it is a famous and
+trustworthy NFT.
+(2) Return "null" doesn't
+mean it is risky.Th
+Malicious behaviors
+include random additions,
+blacklist abuse, falsified
+transactions, and other
+high-risk behaviors.
+Interacting with NFTs
+flagged as Malicious may
+contain a high level of riskOpen Sourcenft_open_sourceIt describes whether this
+contract is open source.Un-open-sourced contract
+may hide various unknow
+mechanisms and are
+extremely risky. When the"1"
+"0" means
+means true;
+false.contract is not open sourc
+we will not be able to dete
+other risk items.It describes whether this
+NFT Contract is
+Proxynft_proxyNFT contract has a proxy
+contract.
+"1" means true;
+"0" means false;
+"Null" means unknown.(1) When
+"is_open_source": "0", it
+will return "null".
+(2) Most Proxy contracts
+are accompanied by
+modifiable implementation
+contracts, and
+implementation contracts
+may contain significant
+potential risk.It describes whether the
+metadata of this NFT is
+Metadata is
+frozenmetadata_frozenstored in IPFS, AR,
+generated by contract, orWhen "is_open_source":other decentralized way."0", it will return "null"."1" means true;
+"0" means false;
+"Null" means unknown.
+It describes whether the
+NFT owner can burn
+others NFT.
+(1)value
+The "value" describes
+the status of the risk.
+null: the contract is not
+open source or there is a
+proxy, it is not possible to
+detect whether the risk
+exists. -1: the risk is
+detected but the
+ownership give up. If the
+detection of a code
+vulnerability, it can also
+be considered risk-free.
+0: the risk is not detected.
+1: the risk is detected,
+and the owner address is
+a common address
+(EOA), then it can be said
+that there is a clear risk.Can burn othersprivileged_burn: {2: The risk is detected,
+but the owner address isPrivileged_burn means thvalue:a contract address, thethe owner can burn othersNFTowner_address:risk is not significant.NFTs directly through theowner_type: }3: The risk is detected,
+but the owner address is
+not detectable / or anmethod.array.
+(2)owner_address
+Owner_address
+describes the owner
+address.
+null: the owner address
+cannot be fetched.
+(3)owner_type
+"blackhole" : the owner
+is a blackhole address.
+"contract" : the owner is
+a contract.
+"eoa" : the owner is a
+common address (eoa).
+"multi-address": the
+owner is an array/list.
+null: the address is not
+detected.
+Transfer_without_approva
+generally means the
+scammer does not need to
+get approvals to transfer
+another address's NFT.
+Can transfer
+NFT without
+approval (sleep
+mint)transfer_without_apprIt describes whether theOne typical example isoval:{
+value: owner_address:
+owner_type:NFT owner can transfer
+NFT without approval.
+Other contents are thesleep_minting.
+Sleep_minting means tha}same as above.the scammer will first add
+the NFT to a well-known
+wallet address and then
+retrieve the NFT. After the
+value of the NFT has
+appreciated , it will be put
+back on the market.It describes whether thePrivileged
+Mintingprivileged_minting: {NFT contract has minting
+methods which can onlySome minting methods ca
+only be triggered by anvalue:
+owner_address:be triggered by an
+address with specialaddress with special
+privileges. Generallyowner_type }privileges.
+Other contents are the
+same as above.speaking, these are usual
+for the owner to mint.self_destruct: { value:
+SelfdestructApproval
+Restrictionowner_address:
+owner_type }restricted_approvalIt describes whether this
+NFT contract can self
+destruct.
+Other contents are theunavailable, and all relate
+assets will be erased.It describes whether the
+NFT contract can restrictIf this risk exists, it meansthe approval, resulting in
+NFT can not be traded on
+the NFT DEX.
+"0" means false;
+"Null" means unknown.
+It describes whether this
+NFT owner can bypass
+the maximum amount of
+minting specified in the
+contract, and continue toMintingoversupply_mintingmint NFTs beyond this
+limit.
+"1" means true;
+"0" means false;
+"Null" means unknown.Sample Response
+Response for a successful request:contract will be destroyed
+all functions will besame as above."1" means true;OversupplyWhen the self-destruct
+function is triggered, thisthat users will not be able
+to trade the NFT on the
+exchange and only
+privileged users in the
+whitelist will be able to
+trade normally.Oversupply minting refers
+to the existence of a speci
+mint method in the NFT
+contract — the owner can
+bypass the maximum
+amount of minting specifie
+in the contract, and
+continue to mint NFTs
+beyond this limit.{
+"code": 1,
+"message": "string",
+"result": {
+"average_price_24h": 0,
+"create_block_number": 0,
+"creator_address": "string",
+"discord_url": "string",
+"github_url": "string",
+"highest_price": 0,
+"lowest_price_24h": 0,
+"medium_url": "string",
+"nft_address": "string",
+"nft_description": "string",
+"nft_erc": "string",
+"nft_items": 0,
+"nft_name": "string",
+"nft_owner_number": 0,
+"nft_symbol": "string",
+"nft_verified": 1,
+"sales_24h": 0,
+"same_nfts": [
+{
+"symbol": "CJWJ",
+"createBlockHeight": 28501671,
+"ownerCount": 2,
+"contractAddress": "0xfb29f518cfca87a2c0dc562a9d9f25829fa53c3e",
+"fullName": "CJWJTOKEN"
+},
+],
+"telegram_url": "string",
+"total_volume": 0,
+"traded_volume_24h": 0,
+"trust_list": 1,
+"twitter_url": "string",
+"website_url": "string",
+"nft_open_source":1,
+"nft_proxy":0,
+"privileged_burn": {
+value:0,
+owner_address: null
+owner_type: null
+}
+"transfer_without_approval": {
+value:0,
+owner_address: null
+owner_type: null
+}
+"privileged_minting": {
+value:0,
+owner_address: nullowner_type: null
+}
+"self_destruct": {
+value:0,
+owner_address: null
+owner_type: null
+}
+"restricted_approval":0,
+"oversupply_minting":0,
+}
+}Code
+CodeAPI License Agreement
+API License AgreementdApp Security Info APIGEThttps://api.gopluslabs.io/api/v1/dapp_security?url=Parameters
+No parametersResponsesMethod: GET
+URL: https://api.gopluslabs.io/api/v1/dapp_security?url=
+example: https://api.gopluslabs.io/api/v1/dapp_security?url=https://for.tube
+Parameters
+ParametersTypeRequiredDescriptionurlStringTrueUrl or domainRequest Headers
+ParametersTypeRequiredDescriptionAuthorizationStringFalseCarrying Token obtained
+through Get Access Token​Response ParametersSecurity itemsParameterdApp Project Nameproject_namedApp UrlurlDescription
+It describes the dApp
+project name.
+It describes the dApp's
+website link.Notice
+​​It describes the
+security information for
+this dApp's contracts.
+The info includes:
+(1) "chain_id"
+describes the chains
+that contracts are
+deployed on;
+"1" means Ethereum;
+"25" means Cronos;
+"56" means BSC;
+"128" means HECO;
+"137" means Polygon;
+"250" means Fantom;
+"42161" means
+Arbitrum;
+"43114" means
+Avalanche.
+(2)
+"contract_address"Contract Security Info"contracts_security":
+[
+{"chain_id":56,
+"contracts":
+[
+{"contract_address":
+"0x744aF9cBb7606BB
+040f6FBf1c0a0B0dcB
+A6385E5",
+"is_open_source": 1,
+"malicious_contract":1,
+"malicious_behavior":
+[],
+“deployment_time”:
+"creator_address":
+"0xb6a70e26be27cda
+6ec4bf8e0df4a49ebc2describes the dAap's
+contract address.
+(3) "is_open_source"
+describes whether this
+contract is open
+source.
+"1" means true;
+"0" means false.
+(4)
+"malicious_contract"
+describes whether the
+address is a suspected
+malicious contract.
+"1" means true;
+"0" means that we
+have not found
+malicious behavior of
+this contract.
+(5)"malicious_behavi
+or" describes specific"malicious_contract"
+and
+"malicious_creator"
+return "0" does not
+mean the address is
+completely safe.
+Maybe we just haven
+found its malicious
+behavior.6f087b",malicious behaviors of"malicious_creator":
+1,
+"malicious_creator_be
+havior":[],the contract.
+(6)}describes the deployed
+time of the contract.]
+}
+]"deployment_time"The value is
+presented as a
+timestamp.
+Example:
+"deployed_time":
+1626578345
+(7) "creator_address"
+describes the creator
+address of the contract.
+(8)
+"malicious_creator"
+describes whether the
+creator is a suspected
+malicious address.
+"1" means true;
+"0" means that we
+have not found
+malicious behavior of
+this address.
+(9)"malicious_creator
+_behavior" describes
+specific malicious
+behaviors of the
+contract creator.is_auditAudit Infois_audit"audit_info":
+[{"audit_time":
+"2021.03.26"
+,"audit_link":
+"https://for.tube/PeckShIt describes whether
+the dApp was audited
+by a reputable audit
+firm.
+"1" means true;
+"0" means that we
+have not found audit
+information for this
+dApp .It describes the audit
+information of the dpp.
+The info includes:
+(1) "audit_time"
+describes the time
+shown in the latest
+audit report.Return "0" does not
+mean the dApp was
+not audited. Maybe w
+just haven't found aud
+information for this
+dApp yet.When the dApp was
+not audited,
+("is_audit"=0), it will
+return "null".If there arield-Audit-Report-(2) "audit_link"multiple audit reports,ForTubeV3-describes the websitethe information of thev1.0.pdf","audit_firm":
+"PeckShield",}]link of the audit report.
+(3) "audit_firm"latest audit report is
+displayed.describes the firm that
+audited the dApp.Trust Listtrust_listIt describes whether
+the dapp is a famous(1) Only "trust_list": "1and trustworthy one.means it is a famous"1" means true;and trustworthy dapp."0" means that this(2) "0" return doesn'tdapp is not yet in ourmean it is risky.trusted list.Sample Response
+Response for a successful request:{
+"code": 1,
+"message": "ok",
+"result": {
+"project_name": "DALAL",
+"url": "https://dalal.eth.link",
+"trust_list": 0,
+"is_audit": 0,
+"audit_info": [
+{
+"audit_time":"2021.10.19",
+"audit_link":"https://www.Certik.com/projects/microverse",
+"audit_firm":"Certik"
+}
+],
+"contracts_security": [
+{
+"chain_id": 56,
+"contracts": [
+{
+"contract_address": "0x307b7ce5ddca26a8ed63cf75cacab2539c7e551e",
+"is_open_source": 1,
+"creator_address": "0xc0204db6798e944c4e8bbf5e223a073cb4ad2859",
+"malicious_contract": 0,
+"malicious_behavior":[],
+"deployment_time": 1615400768,
+"malicious_creator": 0,
+"malicious_creator_behavior":[],
+}
+]
+},
+{
+"chain_id": 137,
+"contracts": [
+{
+"contract_address": "0x307b7ce5ddca26a8ed63cf75cacab2539c7e551e",
+"is_open_source": 1,
+"creator_address": "0xc0204db6798e944c4e8bbf5e223a073cb4ad2859",
+"malicious_contract": 0,
+"malicious_behavior":[],
+"deployment_time": 1615400768,
+"malicious_creator": 0,
+"malicious_creator_behavior":[],
+}
+]
+}
+]
+}
+}Code
+CodeAPI License Agreement
+API License AgreementChange Logs02/21/2023
+New FeatureNew parameter:
+trust_listDescriptionIt describes whether the
+dapp is a famous and
+trustworthy one.Locationhttps://docs.goplusla
+bs.io/reference/dapp
+-security-info-apiImportance
+High: This parameter is
+highly relevant to
+malicious functions.
+Please make sure you
+access to it.01/12/2023
+V1.0.4
+New FeatureDescriptionLocationImportanceGoPlus dAppSupport Cronos chain,
+including many dApps
+on Cronos chain09/23/2022
+V1.0.3Security Info API
+supports the
+Cronos chain
+(chain_id:25) and
+includes the major
+dApps on Cronos
+chain, such as
+VVS, Tectonic,
+Ferro, etc.Low: The Feature has
+https://docs.gopluslabs.i
+o/reference/dappsecurity-info-apibeen automatically
+upgraded, you don't
+need to change
+anything.New FeatureDescriptionLocationImportanceNew items:Algorithm optimization:
+"contracts_security": [](5)"malicious_be
+havior" describes
+specific malicious
+behaviors of the
+contract.
+(9)"malicious_cr
+eator_behavior"
+describes specific
+malicious
+behaviors of the
+contract creator.https://docs.gopluslabs.i
+o/reference/dappsecurity-info-apiLow: The algorithm has
+been automatically
+upgraded, you don't
+need to change
+anything.Phishing Site Detection APIMethod: GET
+URL: https://api.gopluslabs.io/api/v1/phishing_site?url=
+Example: https://api.gopluslabs.io/api/v1/phishing_site?url=https://xn--cm-68s.cc/
+Parameters
+ParametersTypeRequiredDescriptionurlStringTRUEUrlTypeRequiredDescriptionRequest Headers
+ParametersCarrying Token
+AuthorizationStringFALSEobtained through Get
+AccessToken​Response Parameters
+ParameterDescriptionphishing_siteIt means whether the website is a phishing site.
+"1" means true;
+"0" means that we have not found malicious
+behavior of this website.Sample Response
+Response to a successful request:{
+"code": 1,
+"message": "OK",
+"result": {
+"phishing_site": 1
+}
+}Code
+CodeAPI License Agreement
+API License AgreementAccess TokenPOSThttps://api.gopluslabs.io/api/v1/tokenParameters
+No parametersResponsesMethod: POST
+URL: https://api.gopluslabs.io/api/v1/token
+Content-Type: multipart/form-data or application/json
+Parameters:
+ParametersTypeRequiredDescriptionapp_keystringTrueApp keytimeintTrueQuest timestamp (SeconsignstringTrueSignatureSign Method
+Concatenate app_key, time, app_secret in turn, and do sha1().
+Example
+app_key = mBOMg20QW11BbtyH4Zh0
+time = 1647847498
+app_secret = V6aRfxlPJwN3ViJSIFSCdxPvneajuJsh
+sign = sha1(mBOMg20QW11BbtyH4Zh01647847498V6aRfxlPJwN3ViJSIFSCdxPvneajuJsh)
+= 7293d385b9225b3c3f232b76ba97255d0e21063e
+Response ExampleResponse for a successful request:{
+"code" : 1,
+"message" : "OK",
+"result" : {
+"access_token" : "Bearer 6|OgThu2jAjFJlXpBBjMWICsBpssyUFNbY5745uosS",
+"expires_in" : 7200
+}
+}Parameters
+ParameterDescriptionaccess_tokenAPI call credentialexpires_inError Code
+CodeThe time to expiration of the API call credential
+(access_token), in seconds.Code
+CodeDescription1Complete data prepared2Partial data obtained. The complete data can be
+requested again in about 15 seconds.2004Contract address format error!2018ChainID not supported2020Non-contract address2021No info for this contract2026dApp not found2027ABI not found2028The ABI not support parsing4010App_key not exist
+Signature expiration (the same request4011parameters cannot be requested more than
+once)4012Wrong Signature4023Access token not found4029Request limit reached5000System error5006Param error!Support
+Rate Limits
+Our API is free.
+The Rate Limit is 30 calls/minute.
+If you require a higher limit than the available plans, please contact us to apply for access token.Access TokenContact us for help
+Our official Email is service@gopluslabs.ioPlease email us. Beware of phishing attempts and emails
+impersonating the team.API License Agreement
+Last Updated | November 17,2022
+This API License Agreement (this "Agreement") is a binding contract between you ("you" or "your") and
+Tops Labs Ltd ("Company," "we," or "us"). This Agreement governs your access to and use of the GoPlus
+Security application programming interface.BY ACCESSING OR USING THE API, YOU (A)
+ACKNOWLEDGE THAT YOU HAVE READ AND UNDERSTAND THIS AGREEMENT; (B) REPRESENT
+AND WARRANT THAT YOU HAVE THE RIGHT, POWER, AND AUTHORITY TO ENTER INTO THIS
+AGREEMENT; AND (C) ACCEPT THIS AGREEMENT AND AGREE THAT YOU ARE LEGALLY BOUND
+BY ITS TERMS. IF YOU DO NOT ACCEPT THESE TERMS, YOU MAY NOT ACCESS OR USE THE API.
+1. Definitions.
+(a) "API" means the GoPlus Security application programming interface and any API Documentation or
+other API materials made available by Company on its website https://gopluslabs.io/.
+(b) "API Documentation" means the API documentation described at https://docs.gopluslabs.io/ from
+time to time.
+(c) "API Key" means the security key Company makes available for you to access the API.
+(d) "Company Marks" means Company's proprietary trademarks, trade names, branding, or logos made
+available for use in connection with the API pursuant to this Agreement.
+(e) "Company Offering" means Company's operating system/software described at
+https://gopluslabs.io/ the technology and application software made available by Company on a hosted
+basis as listed and described at https://gopluslabs.io/.
+(f) "Your Applications" means any applications developed by you to interact with the API.
+2. License Grant[s]. Subject to and conditioned on your compliance with all terms and conditions set forth
+in this Agreement, we hereby grant you irrevocable, non-exclusive, royalty-free, transferable, sublicensable
+license during the term of the Agreement.to use the API and display certain Company Marks in compliance
+with usage guidelines that we may specify from time to time solely in connection with the use of the API and
+the Applications. You may not share your API Key with any third party, must keep your API Key and all log-in
+information secure, and must use the API Key as your sole means of accessing the API. Your API Key may
+be revoked at any time by us.
+3. Attribution. Except for personal usage, Your Application should source attribution via a backlink
+or a mention that Your Application is “Powered by GoPlus Security”.4. Your Applications. You agree to monitor the use of Your Applications for any activity that violates
+applicable laws, rules, and regulations or any terms and conditions of this Agreement, including any
+fraudulent, inappropriate, or potentially harmful behavior, and promptly restrict any offending users of Your
+Applications from further use of Your Applications. You agree to provide a resource for users of Your
+Applications to report abuse of Your Applications. As between you and us, you are responsible for all acts
+and omissions of your end users in connection with Your Application and their use of the API, if any. You
+agree that you are solely responsible for posting any privacy notices and obtaining any consents from your
+end users required under applicable laws, rules, and regulations for their use of Your Applications. [All use
+by you of the Company Marks, if any, will comply with any usage guidelines that we may specify from time to
+time. You agree that your use of the Company Marks in connection with this Agreement will not create any
+right, title, or interest in or to the Company Marks in favor of you, and all goodwill associated with the use of
+the Company Marks will inure to the benefit of Company.]
+5. Display of GoPlus Logo. You agree that in using our services, you shall display our Company
+Mark, specifically the GoPlus logo with “Powered by GoPlus” expression. In any situation shall you
+use our API services and failed to display our logo, we reserve the right to terminate this Agreement
+and sue for any possible loss. You are aware that GoPlus will only provide API results. We do not suggest
+any modification to our API results, nor will we be responsible for any of such modifications in front-end or
+back-end.
+6. No Support; Updates. This Agreement does not entitle you to any support for the API. You acknowledge
+that we may update or modify the API from time to time and at our sole discretion (in each instance, an
+"Update"), and may require you to obtain and use the most recent version of the API. Updates may
+adversely affect how Your Applications communicate with the Company Offering. You are required to make
+any changes to the Applications that are required for integration as a result of such Update at your sole cost
+and expense. Your continued use of the API following an Update constitutes binding acceptance of the
+Update.
+7. No Fees. You acknowledge and agree that no license fees or other payments will be due under this
+Agreement in exchange for the rights granted under this Agreement. You acknowledge and agree that this
+fee arrangement is made in consideration of the mutual covenants set forth in this agreement, including,
+without limitation, the disclaimers, exclusions, and limitations of liability set forth herein. Notwithstanding the
+foregoing, we reserve the right to start charging for access to and use of the API at any time.
+8. Collection and Use of Your Information. We may collect certain information through the API or the
+Licensor Offering about you or any of your employees, contractors, or agents. By accessing, using, and
+providing information to or through the API or the Company Offering, you consent to all actions taken by us
+with respect to your information in compliance with the then-current version of our privacy policy and data
+protection requirements, available at [https://gopluslabs.io/].
+9. Intellectual Property Ownership. You acknowledge that, as between you and us, (a) we own all right,
+title, and interest, including all intellectual property rights, in and to the API and the Company Offering and
+the Company Marks and (b) you own all right, title, and interest, including all intellectual property rights, in
+and to Your Applications, excluding the aforementioned rights in Section 8(a).You will promptly notify us if
+you become aware of any infringement of any intellectual property rights in the API and Company Marks and
+will fully cooperate with us, in any legal action taken by us to enforce our intellectual property rights.10. Disclaimer of Warranties. THE API AND COMPANY MARKS ARE PROVIDED "AS IS" AND
+COMPANY SPECIFICALLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED,
+STATUTORY, OR OTHERWISE. COMPANY SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT,
+AND ALL WARRANTIES ARISING FROM COURSE OF DEALING, USAGE, OR TRADE PRACTICE.
+COMPANY MAKES NO WARRANTY OF ANY KIND THAT THE API OR COMPANY TRADEMARKS, OR
+ANY PRODUCTS OR RESULTS OF THE USE THEREOF, WILL MEET YOUR OR ANY OTHER
+PERSON'S REQUIREMENTS, OPERATE WITHOUT INTERRUPTION, ACHIEVE ANY INTENDED
+RESULT, BE COMPATIBLE OR WORK WITH ANY OF YOUR OR ANY THIRD PARTY'S SOFTWARE,
+SYSTEM OR OTHER SERVICES, OR BE SECURE, ACCURATE, COMPLETE, FREE OF HARMFUL
+CODE, OR ERROR-FREE, OR THAT ANY ERRORS OR DEFECTS CAN OR WILL BE CORRECTED.
+11. Indemnification. You agree to indemnify, defend, and hold harmless Company and its officers, directors,
+employees, agents, affiliates, successors, and assigns from and against any and all losses, damages,
+liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or
+expenses of whatever kind, including [reasonable] attorneys' fees, arising from or relating to (a) your use or
+misuse of the API [or Company Trademarks], (b) your breach of this Agreement, and (c) Your Applications,
+including any end user's use thereof. In the event we seek indemnification or defense from you under this
+provision, we will promptly notify you in writing of the claim(s) brought against us for which we seek
+indemnification or defense. We reserve the right, at our option and in our sole discretion, to assume full
+control of the defense of claims with legal counsel of our choice. You may not enter into any third-party
+agreement that would, in any manner whatsoever, constitute an admission of fault by us or bind us in any
+manner, without our prior written consent. In the event we assume control of the defense of such claim, we
+will not settle any such claim requiring payment from you without your prior written approval.
+12. Limitations of Liability. TO THE FULLEST EXTENT PERMITTED UNDER APPLICABLE LAW, IN NO
+EVENT WILL WE BE LIABLE TO YOU OR TO ANY THIRD PARTY UNDER ANY TORT, CONTRACT,
+NEGLIGENCE, STRICT LIABILITY, OR OTHER LEGAL OR EQUITABLE THEORY FOR (a) ANY LOST
+PROFITS, LOST OR CORRUPTED DATA, COMPUTER FAILURE OR MALFUNCTION, INTERRUPTION
+OF BUSINESS, OR OTHER SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF
+ANY KIND ARISING OUT OF THE USE OR INABILITY TO USE THE API; OR (b) ANY DAMAGES, IN
+THE AGGREGATE, IN EXCESS OF FIFTY DOLLARS EVEN IF WE HAVE BEEN ADVISED OF THE
+POSSIBILITY OF SUCH LOSS OR DAMAGES AND WHETHER OR NOT SUCH LOSS OR DAMAGES
+ARE FORESEEABLE OR COMPANY WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+13. Term and Termination. The term of this Agreement commences when you execute this Agreement and
+will continue in effect until terminated as set forth in this Section. We may immediately terminate or suspend
+this Agreement, any rights granted herein, and/or your licenses under this Agreement, in our sole discretion
+at any time and for any reason, by providing notice to you or revoking access to the API and Company
+Marks. In addition, this Agreement will terminate immediately and automatically without any notice if you
+violate any of the terms and conditions of this Agreement. You may terminate this Agreement at any time by
+ceasing your access to and use of the API and Company Trademarks.
+14. Modifications. You acknowledge and agree that we have the right, in our sole discretion, to modify this
+Agreement from time to time. You will be notified of modifications through notifications or posts on
+https://docs.gopluslabs.io/ or direct email communication from us. You will be responsible for reviewing and
+becoming familiar with any such modifications.15. Governing Law and Jurisdiction. This agreement is governed by and construed in accordance with
+the internal laws of the State of [STATE] without giving effect to any choice of conflict of law provision or rule
+that would require or permit the application of the laws of any jurisdiction other than those of the State of
+[STATE]. [Except as otherwise set forth herein,] any legal suit, action, or proceeding arising out of [or related
+to] this agreement or the licenses granted hereunder will be instituted [exclusively] in the federal courts of
+the United States or the courts of the State of [STATE] in each case located in the city of [CITY] and County
+of [COUNTY], and each party irrevocably submits to the [exclusive] jurisdiction of such courts in any such
+suit, action, or proceeding.16. Miscellaneous. This Agreement constitutes the entire agreement and understanding between the
+parties hereto with respect to the subject matter hereof and supersedes all prior and contemporaneous
+understandings, agreements, representations, and warranties, both written and oral, with respect to such
+subject matter. his Agreement is personal to you and may not be assigned or transferred for any reason
+whatsoever without our prior written consent and any action or conduct in violation of the foregoing will be
+void and without effect. We expressly reserve the right to assign this Agreement and to delegate any of its
+obligations hereunder.

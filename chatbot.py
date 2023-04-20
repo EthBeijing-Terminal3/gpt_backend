@@ -22,7 +22,7 @@ if os.path.exists(filename):
 # 如果文件不存在，将messages初始化为空数组
 else:
     print("No Default Prompt")
-    
+
 # highlight_his = [
 #         {"role": "user",
 #          "content": "You need to extract the user's action, parameters and comment.\n The user's action includes: 1. login, 2. token_query, 3. token_transfer, 4. token_show, 5. history_query, 6. token_swap, 7. token_freeze, 8. token_unfreeze, 9. borrow_token, 10. loan_status.\n The comments are your explanation to this action.\n Your answer should follow this format:\n Action:{text}\n Paramenters:{text}\n Comment:{text}."},

@@ -101,10 +101,17 @@ def create_embedding(text):
     return text, embedding.data[0].embedding
 
 
-@app.route('/query_go_plus', methods=['POST'])
-def init():
+@app.route('/test', methods=['POST'])
+def test():
     data = request.json
-    if not data or 'wallet_address' not in data:
+    
+    return data
+
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.json
+    if not data or 'prompt' not in data:
         return jsonify({"error": "Invalid request. Provide wallet_address and prompt."}), 400
 
     query = data['prompt']

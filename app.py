@@ -8,10 +8,10 @@ import os
 
 api_key = os.getenv("OPENAI_API_KEY")
 
-
 app = Flask(__name__)
 
 terminal3 = Terminal3(OPENAI_API_KEY=api_key, verbose=True)
+
 
 @app.route('/init', methods=['POST'])
 def init():
@@ -28,6 +28,7 @@ def init():
 
     return answer
 
+
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.json
@@ -43,6 +44,7 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
     return answer
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True, port=5299)
